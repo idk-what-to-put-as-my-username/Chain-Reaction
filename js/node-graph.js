@@ -1,8 +1,5 @@
-import NODES from "../data/nodes.json" with { type: "json" };
-import LINKS from "../data/links.json" with { type: "json" };
-
-const nodes = NODES.map(x => ({ ...x }));
-const links = LINKS.map(x => ({ ...x }));
+import { nodes, links } from "./state.js"
+import { linkColour, linkThickness, nodeColour, nodeRadius, maxLen, forceLinkDistance, forceLinkStrength, forceRepulsionStrength, forceCollisionRadius, glowControl } from "./state.js"
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -16,28 +13,15 @@ const mainGroup = svg.select("#main-g")
 
 let simulation, linkLines, nodePoints, nodeCircles, nodeNames
 
-let linkColour = "rgb(255, 255, 255)",
-    linkThickness = 1,
-    nodeColour = "rgb(255, 255, 255)",
-    nodeRadius = 10,
-    forceLinkDistance = 90,
-    forceLinkStrength = 0.5,
-    forceRepulsionStrength = -380,
-    forceCollisionRadius = 38,
-    glowControl = [0.2, 0.4, 0.9] //controls the gradient stops for the glow effect.
-    // The first value controls where most opaque part of glow is.
-    // The second value controls where the half-transparent part of the glow is.
-    // The third value controls where the fully transparent part of the glow is.
-
 
 //defining "radialGradient" effect
 defs.append("radialGradient")
     .attr("id", "glow")
     .selectAll("stop")
     .data([
-        { offset: `${glowControl[0]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 1)') },
-        { offset: `${glowControl[1]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 0.5)') },
-        { offset: `${glowControl[2]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 0)') }
+        { offset: `${glowControl.reg[0]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 1)') },
+        { offset: `${glowControl.reg[1]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 0.5)') },
+        { offset: `${glowControl.reg[2]*100}%`, color: nodeColour.replace('rgb', 'rgba').replace(')', ', 0)') }
     ])
     .enter()
     .append("stop")
@@ -85,7 +69,7 @@ nodeNames = nodePoints.append("text")
     .attr("text-anchor", "middle")
     .attr("dy", 26)
     .attr("fill", nodeColour)
-    .text(d => d.name.length > 10 ? d.name.slice(0, 8) + "…" : d.name)
+    .text(d => d.name.length > maxLen ? d.name.slice(0, maxLen - 2) + "…" : d.name)
 
 //simulating everything
 simulation.on("tick", () => {
