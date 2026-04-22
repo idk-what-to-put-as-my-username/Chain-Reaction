@@ -21,12 +21,27 @@ export let linkColour = "rgb(255, 255, 255)",
 
 export let selectedNode = null;
 const onNodeSelectedCallbacks = [];
+const onSettingChangedCallbacks = [];
 
 export function selectNode(node) {
-    selectedNode = node
-    onNodeSelectedCallbacks.forEach(func => func(node))
+    selectedNode = node;
+    onNodeSelectedCallbacks.forEach(func => func(node));
 }
 
 export function onNodeSelected(func) {
-    onNodeSelectedCallbacks.push(func)
+    onNodeSelectedCallbacks.push(func);
+}
+
+export function onSettingChanged(func) {
+    onSettingChangedCallbacks.push(func);
+}
+
+export function setNodeColour(colour) {
+    nodeColour = colour;
+    onSettingChangedCallbacks.forEach(func => func({ type: "nodeColour", value: colour }));
+}
+
+export function setLinkColour(colour) {
+    linkColour = colour;
+    onSettingChangedCallbacks.forEach(func => func({ type: "linkColour", value: colour }));
 }
