@@ -4,11 +4,13 @@ import LINKS from "../data/links.json" with { type: "json" };
 export const nodes = NODES.map(x => ({ ...x }));
 export const links = LINKS.map(x => ({ ...x }));
 
-export let linkColour = "rgb(255, 255, 255)",
-        linkThickness = 1,
-        nodeColour = "rgb(255, 255, 255)",
-        nodeRadius = 10,
-        maxLen = 12,                                 //maximum length of node names before truncation. Adjust as needed.
+export let link = { colour: "rgb(255, 255, 255)",
+                    thickness: 1 }
+
+export let node = { colour: "rgb(255, 255, 255)",
+                    radius: 10 };
+
+export let maxLen = 12,                                 //maximum length of node names before truncation. Adjust as needed.
         forceLinkDistance = 90,
         forceLinkStrength = 0.5,
         forceRepulsionStrength = -380,
@@ -21,7 +23,6 @@ export let linkColour = "rgb(255, 255, 255)",
 
 export let selectedNode = null;
 const onNodeSelectedCallbacks = [];
-const onSettingChangedCallbacks = [];
 
 export function selectNode(node) {
     selectedNode = node;
@@ -32,16 +33,7 @@ export function onNodeSelected(func) {
     onNodeSelectedCallbacks.push(func);
 }
 
-export function onSettingChanged(func) {
-    onSettingChangedCallbacks.push(func);
-}
-
-export function setNodeColour(colour) {
-    nodeColour = colour;
-    onSettingChangedCallbacks.forEach(func => func({ type: "nodeColour", value: colour }));
-}
-
-export function setLinkColour(colour) {
-    linkColour = colour;
-    onSettingChangedCallbacks.forEach(func => func({ type: "linkColour", value: colour }));
+export let reRender = null;
+export function onRerender(func) {
+    reRender = func;
 }

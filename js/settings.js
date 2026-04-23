@@ -1,6 +1,16 @@
-import { linkColour, nodeColour, setLinkColour, setNodeColour, onSettingChanged } from "./state.js"
+import { link, node, reRender } from "./state.js"
 
 const settingsContainer = document.getElementById("settings");
+
+function setnodeColour(colour) {
+    node.colour = colour
+    reRender()
+}
+
+function setLinkColour(colour) {
+    link.colour = colour
+    reRender()
+}
 
 // Convert "rgb(r, g, b)" to "#rrggbb" hex
 function rgbToHex(rgb) {
@@ -41,16 +51,16 @@ settingsContainer.innerHTML = `
             <div class="settings-row">
                 <label class="settings-label">Node Color</label>
                 <div class="color-input-wrapper">
-                    <input type="color" id="node-color-picker" value="${rgbToHex(nodeColour)}" />
-                    <div class="color-preview" id="node-color-preview" style="background:${nodeColour}"></div>
+                    <input type="color" id="node-color-picker" value="${rgbToHex(node.colour)}" />
+                    <div class="color-preview" id="node-color-preview" style="background:${node.colour}"></div>
                 </div>
             </div>
 
             <div class="settings-row">
                 <label class="settings-label">Link Color</label>
                 <div class="color-input-wrapper">
-                    <input type="color" id="link-color-picker" value="${rgbToHex(linkColour)}" />
-                    <div class="color-preview" id="link-color-preview" style="background:${linkColour}"></div>
+                    <input type="color" id="link-color-picker" value="${rgbToHex(link.colour)}" />
+                    <div class="color-preview" id="link-color-preview" style="background:${link.colour}"></div>
                 </div>
             </div>
         </div>
@@ -95,7 +105,7 @@ closeBtn.addEventListener("click", closePanel);
 nodeColorPicker.addEventListener("input", (e) => {
     const rgb = hexToRgb(e.target.value);
     nodePreview.style.background = rgb;
-    setNodeColour(rgb);
+    setnodeColour(rgb);
 });
 
 linkColorPicker.addEventListener("input", (e) => {
@@ -109,7 +119,7 @@ document.querySelectorAll(".preset-btn").forEach(btn => {
         const nodeRgb = btn.dataset.node;
         const linkRgb = btn.dataset.link;
 
-        setNodeColour(nodeRgb);
+        setnodeColour(nodeRgb);
         setLinkColour(linkRgb);
 
         nodeColorPicker.value = rgbToHex(nodeRgb);
