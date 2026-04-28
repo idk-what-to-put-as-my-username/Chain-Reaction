@@ -1,62 +1,854 @@
 [
     {
-        "id": "A",
-        "name": "Node A",
-        "desc": "ssdjhajda",
+        "id": "tribal_arabia",
+        "name": "Pre-Islamic Tribal Arabia",
+        "desc": "Fractured tribal society of the Arabian Peninsula with no central authority, dominated by inter-tribal warfare, polytheistic religion, and trade through Mecca.",
+        "year": 600
+    },
+    {
+        "id": "muhammad_birth",
+        "name": "Birth of Muhammad",
+        "desc": "Muhammad ibn Abdullah is born in Mecca into the Banu Hashim clan of the Quraysh tribe, in the Year of the Elephant.",
+        "year": 570
+    },
+    {
+        "id": "khadijah_marriage",
+        "name": "Marriage to Khadijah",
+        "desc": "Muhammad marries Khadijah bint Khuwaylid, a wealthy and respected Meccan merchant, providing him with stability and a partner who would become the first Muslim.",
+        "year": 595
+    },
+    {
+        "id": "first_revelation",
+        "name": "First Revelation in Cave of Hira",
+        "desc": "The angel Jibril (Gabriel) appears to Muhammad in the Cave of Hira, beginning the revelation of the Quran with the command 'Iqra' (Read).",
         "year": 610
     },
     {
-        "id": "B",
-        "name": "Node B",
-        "desc": "dnsajnda",
+        "id": "early_persecution",
+        "name": "Quraysh Persecution of Early Muslims",
+        "desc": "Quraysh leadership escalates persecution of early Muslims, especially those without tribal protection, including torture, social boycott, and economic pressure.",
+        "year": 613
+    },
+    {
+        "id": "first_abyssinia",
+        "name": "Migration to Abyssinia",
+        "desc": "A group of early Muslims migrates to Christian Abyssinia (Ethiopia) seeking protection under the Negus, marking Islam's first contact with an African Christian civilization.",
+        "year": 615
+    },
+    {
+        "id": "banu_hashim_boycott",
+        "name": "Boycott of Banu Hashim",
+        "desc": "The Quraysh impose a three-year social and economic boycott on the Banu Hashim clan, isolating Muhammad and his supporters in the valley of Abu Talib.",
+        "year": 617
+    },
+    {
+        "id": "year_of_sorrow",
+        "name": "Year of Sorrow",
+        "desc": "Muhammad loses both his wife Khadijah and his uncle and protector Abu Talib in the same year, leaving him without his closest emotional support and tribal protection.",
+        "year": 619
+    },
+    {
+        "id": "isra_miraj",
+        "name": "Night Journey (Isra wal Miraj)",
+        "desc": "Muhammad's miraculous night journey from Mecca to Jerusalem and ascension through the heavens, establishing Al-Aqsa as a sacred Islamic site.",
+        "year": 621
+    },
+    {
+        "id": "pledges_aqaba",
+        "name": "Pledges of Aqaba",
+        "desc": "Two successive pledges from a delegation of Yathrib (Madinah) tribesmen to support and protect Muhammad, opening the path for the Hijra.",
+        "year": 621
+    },
+    {
+        "id": "hijra_madinah",
+        "name": "Hijra to Madinah",
+        "desc": "Muhammad and his followers migrate from Mecca to Madinah, establishing the first Islamic polity. The event marks year 1 of the Islamic calendar.",
         "year": 622
     },
     {
-        "id": "C",
-        "name": "Node C",
-        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "id": "constitution_madinah",
+        "name": "Constitution of Madinah",
+        "desc": "A written compact between Muslims, Jewish tribes, and other clans of Madinah, often considered the first written multi-faith governance document.",
+        "year": 622
+    },
+    {
+        "id": "qibla_change",
+        "name": "Change of Qibla to Mecca",
+        "desc": "The direction of prayer is changed from Jerusalem to the Kaaba in Mecca, asserting a distinct Islamic identity while preserving Jerusalem's earlier sacred status.",
+        "year": 624
+    },
+    {
+        "id": "battle_badr",
+        "name": "Battle of Badr",
+        "desc": "A small Muslim force defeats a much larger Quraysh army, the first major military victory of the nascent Muslim community and a decisive psychological turning point.",
+        "year": 624
+    },
+    {
+        "id": "battle_uhud",
+        "name": "Battle of Uhud",
+        "desc": "Quraysh counterattack at Uhud results in a Muslim setback after archers abandon their post, becoming a foundational lesson in discipline and obedience to leadership.",
+        "year": 625
+    },
+    {
+        "id": "battle_trench",
+        "name": "Battle of the Trench",
+        "desc": "On the advice of Salman al-Farsi, Muslims dig a trench around Madinah, repelling a confederate siege using Persian tactics and demonstrating openness to foreign innovation.",
+        "year": 627
+    },
+    {
+        "id": "treaty_hudaybiyyah",
+        "name": "Treaty of Hudaybiyyah",
+        "desc": "A ten-year peace treaty with the Quraysh that initially seemed unfavorable but allowed Islam to spread peacefully across Arabia, tripling the Muslim population within two years.",
+        "year": 628
+    },
+    {
+        "id": "conquest_mecca",
+        "name": "Conquest of Mecca",
+        "desc": "Muhammad enters Mecca with minimal bloodshed and grants general amnesty to former enemies, transforming many into loyal Muslims and unifying Arabia.",
+        "year": 630
+    },
+    {
+        "id": "farewell_sermon",
+        "name": "Farewell Sermon",
+        "desc": "On the Plain of Arafat, Muhammad delivers a sermon affirming racial equality, the rights of women, sanctity of life and property, and the completion of the religion.",
         "year": 632
     },
     {
-        "id": "D",
-        "name": "Node D",
-        "desc": "sdhafbqehd",
+        "id": "death_prophet",
+        "name": "Death of the Prophet",
+        "desc": "Muhammad dies in Madinah, triggering the first major succession crisis in Islamic history.",
+        "year": 632
+    },
+    {
+        "id": "preservation_sunnah",
+        "name": "Preservation of the Sunnah in Hadith",
+        "desc": "Systematic compilation of the Prophet's sayings and actions by scholars like Bukhari, Muslim, Abu Dawud, and others, establishing Hadith as the second source of Islamic law.",
+        "year": 850
+    },
+    {
+        "id": "abu_bakr_caliphate",
+        "name": "Caliphate of Abu Bakr",
+        "desc": "Abu Bakr is elected as the first caliph through consultation at Saqifah, holding the community together at its most fragile moment.",
+        "year": 632
+    },
+    {
+        "id": "ridda_wars",
+        "name": "Ridda (Apostasy) Wars",
+        "desc": "Abu Bakr suppresses tribes that refused to pay zakat or claimed prophethood after Muhammad's death, reuniting Arabia under Islamic authority.",
+        "year": 632
+    },
+    {
+        "id": "battle_yamama",
+        "name": "Battle of Yamama",
+        "desc": "Decisive battle of the Ridda Wars against the false prophet Musaylimah, in which a large number of Quran memorizers are killed.",
+        "year": 633
+    },
+    {
+        "id": "quran_compilation",
+        "name": "First Compilation of the Quran",
+        "desc": "Concerned by the loss of huffadh at Yamama, Abu Bakr commissions Zayd ibn Thabit to compile the Quran in a single written manuscript.",
+        "year": 634
+    },
+    {
+        "id": "umar_caliphate",
+        "name": "Caliphate of Umar ibn al-Khattab",
+        "desc": "Umar's ten-year reign produces the most rapid territorial expansion in early history, plus institutional foundations for Islamic governance.",
+        "year": 634
+    },
+    {
+        "id": "battle_yarmouk",
+        "name": "Battle of Yarmouk",
+        "desc": "Decisive Muslim victory over the Byzantine Empire that effectively ended Byzantine rule over Syria and Palestine.",
+        "year": 636
+    },
+    {
+        "id": "battle_qadisiyyah",
+        "name": "Battle of al-Qadisiyyah",
+        "desc": "Muslim victory that broke the back of the Sassanid Persian Empire and opened Mesopotamia to Islamic rule.",
+        "year": 636
+    },
+    {
+        "id": "conquest_jerusalem",
+        "name": "Muslim Conquest of Jerusalem",
+        "desc": "Umar personally accepts the surrender of Jerusalem from Patriarch Sophronius, entering the city humbly on foot.",
+        "year": 638
+    },
+    {
+        "id": "covenant_umar",
+        "name": "Covenant of Umar",
+        "desc": "A pact protecting the lives, property, and churches of Jerusalem's Christians, setting a precedent for Islamic governance of the Holy City for centuries.",
+        "year": 638
+    },
+    {
+        "id": "conquest_egypt",
+        "name": "Muslim Conquest of Egypt",
+        "desc": "Amr ibn al-As leads the conquest of Byzantine Egypt, opening North Africa and securing the breadbasket of the empire.",
+        "year": 641
+    },
+    {
+        "id": "battle_nahavand",
+        "name": "Battle of Nahavand",
+        "desc": "Final destruction of the Sassanid Persian Empire, ending over four centuries of Sassanid rule and bringing Persian civilization into the Islamic world.",
+        "year": 642
+    },
+    {
+        "id": "founding_garrison_cities",
+        "name": "Founding of Garrison Cities",
+        "desc": "Umar founds Basra, Kufa, and Fustat as garrison cities (amsar) to manage the new conquests; they grow into major centers of Islamic civilization.",
+        "year": 638
+    },
+    {
+        "id": "diwan_welfare",
+        "name": "Establishment of the Diwan",
+        "desc": "Umar institutes a state register paying stipends to Muslims based on length of service in Islam, an early precursor to the welfare state.",
+        "year": 638
+    },
+    {
+        "id": "hijri_calendar",
+        "name": "Establishment of the Hijri Calendar",
+        "desc": "Umar formally adopts the Hijra as year one of the Islamic calendar, giving the Muslim world a unified sense of time.",
+        "year": 638
+    },
+    {
+        "id": "assassination_umar",
+        "name": "Assassination of Umar",
+        "desc": "Umar is stabbed during Fajr prayer by a Persian slave, Abu Lulu. Before dying he appoints a six-man council (shura) to choose his successor.",
+        "year": 644
+    },
+    {
+        "id": "uthman_caliphate",
+        "name": "Caliphate of Uthman ibn Affan",
+        "desc": "Uthman's twelve-year reign sees major standardization of the Quran, the first Islamic navy, and growing dissent over alleged nepotism.",
+        "year": 644
+    },
+    {
+        "id": "mushaf_uthman",
+        "name": "Standardization of the Mushaf",
+        "desc": "Uthman commissions a single authoritative recension of the Quran and orders variant manuscripts destroyed; this Mushaf is the textual basis of every Quran today.",
+        "year": 650
+    },
+    {
+        "id": "first_islamic_navy",
+        "name": "First Islamic Navy",
+        "desc": "Under Uthman, Muawiya builds the first Islamic navy, defeating Byzantine fleets at the Battle of the Masts (Dhat al-Sawari) and opening Mediterranean power.",
+        "year": 655
+    },
+    {
+        "id": "assassination_uthman",
+        "name": "Assassination of Uthman",
+        "desc": "Rebels from Egypt and Iraq besiege Uthman in Madinah and kill him while he reads the Quran, opening the First Fitna (civil war).",
+        "year": 656
+    },
+    {
+        "id": "ali_caliphate",
+        "name": "Caliphate of Ali ibn Abi Talib",
+        "desc": "The fourth caliph's reign is consumed by internal conflict, with the Muslim community split for the first time over questions of legitimacy and justice.",
+        "year": 656
+    },
+    {
+        "id": "battle_camel",
+        "name": "Battle of the Camel",
+        "desc": "First open battle between Muslim armies, fought near Basra between Ali's forces and those of Aisha, Talha, and Zubayr who demanded justice for Uthman.",
+        "year": 656
+    },
+    {
+        "id": "battle_siffin",
+        "name": "Battle of Siffin",
+        "desc": "Indecisive battle between Ali and Muawiya that ended in arbitration, fracturing Ali's coalition and producing the Kharijite movement.",
+        "year": 657
+    },
+    {
+        "id": "kharijites_emerge",
+        "name": "Emergence of the Kharijites",
+        "desc": "A faction of Ali's army secedes after rejecting the Siffin arbitration, declaring all who disagreed with them apostates. Islam's first sectarian extremist movement.",
+        "year": 658
+    },
+    {
+        "id": "assassination_ali",
+        "name": "Assassination of Ali",
+        "desc": "Ali is killed in Kufa by the Kharijite Ibn Muljam, ending the Rashidun era and clearing the path for Umayyad rule.",
         "year": 661
     },
     {
-        "id": "E",
-        "name": "Node E",
-        "desc": "eryyhfdbb",
+        "id": "umayyad_caliphate",
+        "name": "Founding of the Umayyad Caliphate",
+        "desc": "Muawiya consolidates power and moves the capital to Damascus, transforming the caliphate from elective consultation into hereditary monarchy.",
+        "year": 661
+    },
+    {
+        "id": "karbala",
+        "name": "Martyrdom of Husayn at Karbala",
+        "desc": "Husayn ibn Ali and his small party are killed by Umayyad forces near Karbala in Iraq, becoming the central tragedy and rallying event of Shia Islam.",
+        "year": 680
+    },
+    {
+        "id": "sunni_shia_split",
+        "name": "Sunni-Shia Split Solidified",
+        "desc": "The political and theological dispute over leadership crystallizes into two distinct traditions whose differences would shape Islamic history permanently.",
+        "year": 680
+    },
+    {
+        "id": "dome_of_rock",
+        "name": "Construction of the Dome of the Rock",
+        "desc": "Caliph Abd al-Malik builds the Dome of the Rock on the Temple Mount, the first major work of Islamic architecture and a statement of Jerusalem's centrality to Islam.",
+        "year": 691
+    },
+    {
+        "id": "arabic_administration",
+        "name": "Arabic Becomes Administrative Language",
+        "desc": "Abd al-Malik standardizes Arabic as the language of administration and reforms the coinage, unifying the empire linguistically and economically.",
+        "year": 697
+    },
+    {
+        "id": "al_aqsa_built",
+        "name": "Completion of Al-Aqsa Mosque",
+        "desc": "Caliph al-Walid I completes the Al-Aqsa Mosque on the Haram al-Sharif, anchoring the Noble Sanctuary as a permanent center of Islamic worship.",
+        "year": 705
+    },
+    {
+        "id": "tariq_invasion",
+        "name": "Tariq ibn Ziyad Invades Iberia",
+        "desc": "The Berber commander Tariq crosses the strait that bears his name (Jabal Tariq, Gibraltar) with about 7,000 troops, beginning the conquest of the Iberian Peninsula.",
+        "year": 711
+    },
+    {
+        "id": "visigothic_collapse",
+        "name": "Collapse of the Visigothic Kingdom",
+        "desc": "King Roderick is defeated at the Battle of Guadalete after being betrayed by rival Visigothic factions; the kingdom collapses within seven years.",
+        "year": 711
+    },
+    {
+        "id": "conquest_sindh",
+        "name": "Muhammad bin Qasim Conquers Sindh",
+        "desc": "An Umayyad expedition under the seventeen-year-old Muhammad bin Qasim conquers Sindh, planting Islam in the Indian subcontinent for the first time.",
+        "year": 711
+    },
+    {
+        "id": "battle_tours",
+        "name": "Battle of Tours",
+        "desc": "Frankish forces under Charles Martel halt the northward Muslim expansion in Gaul, redirecting Andalusian energy inward toward urban culture and learning.",
+        "year": 732
+    },
+    {
+        "id": "abbasid_revolution",
+        "name": "Abbasid Revolution",
+        "desc": "A coalition of Persians, Shia, and disaffected Arabs under the Abbasid family overthrows the Umayyads, massacring most of the family at a banquet near Damascus.",
         "year": 750
     },
     {
-        "id": "F",
-        "name": "Node F",
-        "desc": "xbccncnueuwhbx",
+        "id": "battle_talas",
+        "name": "Battle of Talas",
+        "desc": "Abbasid forces defeat a Tang Chinese army in Central Asia. Captured Chinese paper-makers reveal the secret of paper production to the Islamic world.",
+        "year": 751
+    },
+    {
+        "id": "abd_rahman_escapes",
+        "name": "Abd al-Rahman I Escapes to Iberia",
+        "desc": "The last surviving Umayyad prince flees the Abbasid massacre, crosses North Africa, and reaches Iberia after years on the run.",
+        "year": 756
+    },
+    {
+        "id": "emirate_cordoba",
+        "name": "Emirate of Cordoba Established",
+        "desc": "Abd al-Rahman I establishes an independent Umayyad emirate in Cordoba, beginning a separate, distinctly Andalusian branch of Islamic civilization.",
+        "year": 756
+    },
+    {
+        "id": "baghdad_founded",
+        "name": "Baghdad Founded",
+        "desc": "Caliph al-Mansur founds the Round City of Baghdad on the Tigris, deliberately positioned to fuse Persian, Greek, Indian, and Arab knowledge networks.",
+        "year": 762
+    },
+    {
+        "id": "great_mosque_cordoba",
+        "name": "Great Mosque of Cordoba Begun",
+        "desc": "Abd al-Rahman I begins construction of the Great Mosque, fusing Roman columns, Visigothic horseshoe arches, and Islamic design into a new architectural language.",
+        "year": 785
+    },
+    {
+        "id": "harun_al_rashid",
+        "name": "Reign of Harun al-Rashid",
+        "desc": "The peak of early Abbasid wealth and prestige, with diplomatic exchanges reaching as far as the court of Charlemagne and laying groundwork for translation-era patronage.",
+        "year": 786
+    },
+    {
+        "id": "paper_industry",
+        "name": "Paper Industry Established",
+        "desc": "Paper mills are established in Baghdad and other cities, replacing parchment and papyrus and making books dramatically cheaper to produce and circulate.",
+        "year": 794
+    },
+    {
+        "id": "bimaristans",
+        "name": "Establishment of Bimaristans",
+        "desc": "Public hospitals (bimaristans) are established across the Abbasid realm with separate wards, free care regardless of faith or means, and clinical training for students.",
+        "year": 805
+    },
+    {
+        "id": "al_mamun_caliphate",
+        "name": "Caliphate of Al-Mamun",
+        "desc": "Al-Mamun's reign formalizes state patronage of the sciences and translation, making Baghdad the unrivaled intellectual capital of the world.",
+        "year": 813
+    },
+    {
+        "id": "al_khwarizmi_algebra",
+        "name": "Al-Khwarizmi Develops Algebra",
+        "desc": "Al-Khwarizmi's Kitab al-Jabr wal-Muqabala founds algebra as a discipline. His name gives us 'algorithm' and his methods underlie modern computing.",
+        "year": 820
+    },
+    {
+        "id": "indian_numerals",
+        "name": "Adoption of Hindu-Arabic Numerals",
+        "desc": "Al-Khwarizmi and others systematize the Indian decimal place-value system, including zero, transforming arithmetic and enabling the modern world of calculation.",
+        "year": 825
+    },
+    {
+        "id": "house_of_wisdom",
+        "name": "House of Wisdom Established",
+        "desc": "Al-Mamun develops the Bayt al-Hikma in Baghdad as a major translation and research institution, employing Christian, Jewish, Zoroastrian, and Muslim scholars side by side.",
+        "year": 830
+    },
+    {
+        "id": "greek_translations",
+        "name": "Translation of Greek Classics into Arabic",
+        "desc": "Aristotle, Plato, Galen, Euclid, and Ptolemy are translated into Arabic, often by Christian scholars like Hunayn ibn Ishaq, preserving works that Europe had largely lost.",
+        "year": 830
+    },
+    {
+        "id": "al_razi",
+        "name": "Al-Razi's Medical Innovations",
+        "desc": "The Persian physician Abu Bakr al-Razi distinguishes smallpox from measles, introduces clinical case studies, and challenges Galenic dogma with empirical observation.",
+        "year": 900
+    },
+    {
+        "id": "fatimid_caliphate",
+        "name": "Fatimid Caliphate Established",
+        "desc": "An Ismaili Shia dynasty proclaims itself caliphate in Ifriqiya, eventually conquering Egypt and challenging both Abbasid and Andalusian Sunni authority.",
+        "year": 909
+    },
+    {
+        "id": "abd_rahman_iii",
+        "name": "Abd al-Rahman III Declares Caliphate of Cordoba",
+        "desc": "The Cordoban emir takes the title of caliph in response to the Fatimid challenge, formalizing Cordoba as the third caliphate of the Islamic world.",
+        "year": 929
+    },
+    {
+        "id": "cordoba_zenith",
+        "name": "Cordoba's Zenith",
+        "desc": "Cordoba reaches an estimated half-million inhabitants with paved and lit streets, public baths, libraries, and a sewer system, becoming the largest city in Europe.",
+        "year": 950
+    },
+    {
+        "id": "al_sufi_stars",
+        "name": "Al-Sufi's Book of Fixed Stars",
+        "desc": "The Persian astronomer Abd al-Rahman al-Sufi catalogues constellations and gives Arabic names to stars (Aldebaran, Betelgeuse, Vega) that astronomy still uses today.",
+        "year": 964
+    },
+    {
+        "id": "al_azhar_founded",
+        "name": "Al-Azhar University Founded",
+        "desc": "The Fatimids found Al-Azhar in their new capital of Cairo, originally as a Shia institution; later a Sunni stronghold and one of the oldest continuously operating universities in the world.",
+        "year": 970
+    },
+    {
+        "id": "pope_sylvester",
+        "name": "Pope Sylvester II Studies Islamic Learning",
+        "desc": "Gerbert of Aurillac studies in Catalan monasteries fed by Andalusian science. As Pope Sylvester II he champions Arabic numerals and the abacus in Christian Europe.",
+        "year": 990
+    },
+    {
+        "id": "ghana_islam",
+        "name": "Islamization of the Ghana Empire",
+        "desc": "Trans-Saharan trade and gradual conversion of Soninke elites carry Islam into West Africa, beginning a centuries-long Islamization of the Sahel.",
+        "year": 1000
+    },
+    {
+        "id": "mahmud_ghazni",
+        "name": "Mahmud of Ghazni's Indian Campaigns",
+        "desc": "The Ghaznavid sultan launches seventeen raids into northern India, establishing a permanent Muslim political presence and Persianate administrative culture in the subcontinent.",
+        "year": 1001
+    },
+    {
+        "id": "al_hakim_destroys_church",
+        "name": "Al-Hakim Destroys Church of the Holy Sepulchre",
+        "desc": "The eccentric Fatimid caliph al-Hakim orders the destruction of the Church of the Holy Sepulchre in Jerusalem, generating long-lasting outrage in Christian Europe.",
+        "year": 1009
+    },
+    {
+        "id": "ibn_alhaytham",
+        "name": "Ibn al-Haytham's Optics",
+        "desc": "Ibn al-Haytham (Alhazen) publishes the Kitab al-Manazir, proving light enters the eye, founding modern optics, and articulating an experimental scientific method.",
+        "year": 1021
+    },
+    {
+        "id": "ibn_sina_canon",
+        "name": "Ibn Sina's Canon of Medicine",
+        "desc": "The Persian polymath's Canon synthesizes Greek and Islamic medicine into a fourteen-volume textbook used in European universities until the seventeenth century.",
+        "year": 1025
+    },
+    {
+        "id": "caliphate_collapse_andalus",
+        "name": "Cordoban Caliphate Fragments into Taifas",
+        "desc": "Civil war and weak succession shatter the Cordoban caliphate into competing taifa kingdoms, opening Iberia to Christian pressure from the north.",
+        "year": 1031
+    },
+    {
+        "id": "battle_manzikert",
+        "name": "Battle of Manzikert",
+        "desc": "The Seljuk Turks defeat the Byzantine Empire and capture Emperor Romanos IV, opening Anatolia to Turkic settlement and ultimately the rise of the Ottomans.",
+        "year": 1071
+    },
+    {
+        "id": "seljuk_anatolia",
+        "name": "Seljuk Settlement of Anatolia",
+        "desc": "Turkic tribes migrate into Anatolia after Manzikert, gradually transforming the demographic and religious character of what had been a Byzantine heartland.",
+        "year": 1080
+    },
+    {
+        "id": "toledo_falls",
+        "name": "Toledo Falls to Christians",
+        "desc": "Alfonso VI captures Toledo with its enormous Arabic libraries intact, providing the raw material for the largest knowledge transfer in medieval European history.",
+        "year": 1085
+    },
+    {
+        "id": "almoravid_intervention",
+        "name": "Almoravid Intervention in Iberia",
+        "desc": "Yusuf ibn Tashfin and the Almoravids cross from North Africa to defend Andalusi Muslims, defeating Alfonso VI at Sagrajas but later absorbing Al-Andalus into a stricter empire.",
+        "year": 1086
+    },
+    {
+        "id": "urban_calls_crusade",
+        "name": "Pope Urban II Calls First Crusade",
+        "desc": "At the Council of Clermont, Urban II preaches an armed pilgrimage to recover Jerusalem, channeling European militarism into a religious campaign.",
+        "year": 1095
+    },
+    {
+        "id": "first_crusade",
+        "name": "First Crusade",
+        "desc": "European armies traverse the Mediterranean and Anatolia, exploiting the political fragmentation of the Muslim Levant after Manzikert and the Sunni-Shia divide.",
+        "year": 1096
+    },
+    {
+        "id": "crusader_jerusalem",
+        "name": "Crusader Capture and Massacre of Jerusalem",
+        "desc": "Crusader armies storm Jerusalem and slaughter much of its Muslim and Jewish population over several days, converting Al-Aqsa into a church and the Dome of the Rock into a chapel.",
+        "year": 1099
+    },
+    {
+        "id": "toledo_translators",
+        "name": "Toledo School of Translators",
+        "desc": "Under Archbishop Raymond and his successors, a multi-faith team in Toledo translates Arabic philosophical, scientific, and medical works into Latin, reshaping European thought.",
+        "year": 1126
+    },
+    {
+        "id": "zangi_unifies",
+        "name": "Zangi Unifies Mosul and Aleppo",
+        "desc": "The Turkic atabeg Imad ad-Din Zangi unites Mosul and Aleppo and recaptures Edessa from the Crusaders, beginning the Muslim counter-mobilization.",
+        "year": 1127
+    },
+    {
+        "id": "nur_ad_din",
+        "name": "Nur ad-Din Consolidates Muslim Unity",
+        "desc": "Zangi's son consolidates Syria and revives institutions of Sunni learning and jihad, mentoring the young Saladin in his court.",
+        "year": 1146
+    },
+    {
+        "id": "almohad_dynasty",
+        "name": "Almohad Dynasty",
+        "desc": "A reformist Berber movement displaces the Almoravids and rules a North African and Andalusian empire, supporting philosophers like Ibn Rushd while repressing other groups.",
+        "year": 1147
+    },
+    {
+        "id": "saladin_unites",
+        "name": "Saladin Unites Egypt and Syria",
+        "desc": "Salah ad-Din ends the Fatimid caliphate, founds the Ayyubid dynasty, and unites Egypt, Syria, and the Hijaz under a single Sunni political order.",
+        "year": 1171
+    },
+    {
+        "id": "ibn_rushd",
+        "name": "Ibn Rushd's Aristotelian Commentaries",
+        "desc": "The Andalusian philosopher Averroes writes the most influential medieval commentaries on Aristotle, decisively shaping later scholasticism through Latin translation.",
+        "year": 1180
+    },
+    {
+        "id": "battle_hattin",
+        "name": "Battle of Hattin",
+        "desc": "Saladin lures the Crusader field army into the waterless hills of Hattin and annihilates it, breaking the Latin Kingdom of Jerusalem in a single day.",
+        "year": 1187
+    },
+    {
+        "id": "saladin_jerusalem",
+        "name": "Saladin Reconquers Jerusalem",
+        "desc": "Saladin retakes Jerusalem with mercy and restraint, ransoming prisoners and protecting non-combatants, in deliberate contrast to the Crusader massacre of 1099.",
+        "year": 1187
+    },
+    {
+        "id": "third_crusade",
+        "name": "Third Crusade",
+        "desc": "European kings including Richard I and Philip II launch a counter-campaign that recovers a coastal strip but cannot retake Jerusalem.",
+        "year": 1189
+    },
+    {
+        "id": "delhi_sultanate",
+        "name": "Delhi Sultanate Founded",
+        "desc": "Qutb-ud-din Aibak establishes the Delhi Sultanate, beginning over three centuries of Turkic and Afghan Muslim rule across much of the Indian subcontinent.",
+        "year": 1206
+    },
+    {
+        "id": "genghis_unifies",
+        "name": "Genghis Khan Unifies the Mongols",
+        "desc": "Temujin is proclaimed Genghis Khan at the kurultai, forging the most efficient military machine the world had seen and setting the stage for unprecedented expansion.",
+        "year": 1206
+    },
+    {
+        "id": "mongol_khwarezm",
+        "name": "Mongol Invasion of Khwarezm",
+        "desc": "After a Khwarezmian governor murders Mongol envoys, Genghis Khan unleashes a campaign that destroys the Khwarezmian Empire and devastates Persia and Central Asia.",
+        "year": 1219
+    },
+    {
+        "id": "mali_empire",
+        "name": "Mali Empire Founded",
+        "desc": "Sundiata Keita defeats the Sosso and founds the Mali Empire, which under his successors becomes a wealthy and increasingly Islamicized West African power.",
+        "year": 1235
+    },
+    {
+        "id": "fall_cordoba",
+        "name": "Fall of Cordoba",
+        "desc": "Ferdinand III of Castile captures Cordoba, converting the Great Mosque into a cathedral and signaling that the Reconquista has reached the heart of Al-Andalus.",
+        "year": 1236
+    },
+    {
+        "id": "nasrid_granada",
+        "name": "Nasrid Emirate of Granada",
+        "desc": "Muhammad I founds the Nasrid emirate of Granada, the last Muslim polity in Iberia, surviving as a vassal of Castile by paying tribute.",
+        "year": 1238
+    },
+    {
+        "id": "alhambra_construction",
+        "name": "Alhambra Construction Begins",
+        "desc": "Construction begins on the Alhambra palace-city of Granada, the final great architectural statement of Andalusian Islam.",
+        "year": 1238
+    },
+    {
+        "id": "ibn_nafis",
+        "name": "Ibn al-Nafis Discovers Pulmonary Circulation",
+        "desc": "Working in Damascus and Cairo, Ibn al-Nafis describes the pulmonary circulation of blood three centuries before William Harvey.",
+        "year": 1242
+    },
+    {
+        "id": "fall_seville",
+        "name": "Fall of Seville",
+        "desc": "Ferdinand III also captures Seville, leaving Granada as the only remaining Muslim emirate in the Iberian Peninsula.",
+        "year": 1248
+    },
+    {
+        "id": "mamluk_sultanate",
+        "name": "Mamluk Sultanate Founded",
+        "desc": "Slave-soldier (mamluk) commanders seize power in Cairo after defeating the Seventh Crusade, founding a regime that would defend the Islamic core for centuries.",
+        "year": 1250
+    },
+    {
+        "id": "berke_islam",
+        "name": "Berke Khan Converts to Islam",
+        "desc": "Berke Khan of the Golden Horde becomes the first major Mongol ruler to embrace Islam, setting the stage for confrontation with his cousin Hulagu.",
+        "year": 1252
+    },
+    {
+        "id": "hulagu_mission",
+        "name": "Hulagu's Mission to Conquer the Islamic Heartland",
+        "desc": "The Great Khan Mongke dispatches his brother Hulagu westward with orders to subdue the Ismaili Assassins and the Abbasid caliphate.",
+        "year": 1255
+    },
+    {
+        "id": "ibn_alkami",
+        "name": "Vizier Ibn al-Alkami Disbands Baghdad's Army",
+        "desc": "Caliph al-Mustasim's Shia vizier (later accused of Mongol collusion) advises drastic cuts to the Abbasid army on the eve of the Mongol assault.",
         "year": 1258
     },
     {
-        "id": "Muhaha",
-        "name": "Hey, stop it",
-        "desc": "This is a test node",
-        "year": 20119
+        "id": "sack_baghdad",
+        "name": "Sack of Baghdad",
+        "desc": "Hulagu Khan's army breaches Baghdad's walls and unleashes a forty-day sack. Estimates of the dead range from 200,000 to 800,000.",
+        "year": 1258
     },
     {
-        "id": "Hahaha",
-        "name": "NOOOOO look AT ME",
-        "desc": "This is a test node",
-        "year": 2069
+        "id": "wisdom_destroyed",
+        "name": "Destruction of the House of Wisdom",
+        "desc": "Books from the Bayt al-Hikma are reportedly thrown into the Tigris until the river ran black with ink, in one of the largest single losses of knowledge in human history.",
+        "year": 1258
     },
     {
-        "id": "Hihihi",
-        "name": "I am the best node",
-        "desc": "This is a test node",
-        "year": 1172
+        "id": "abbasid_ends",
+        "name": "End of the Abbasid Caliphate",
+        "desc": "Caliph al-Mustasim is executed by being rolled in a carpet and trampled by horses, ending five centuries of Abbasid rule and leaving the Sunni world without a symbolic head.",
+        "year": 1258
     },
     {
-        "id": "Hohhoh",
-        "name": "I am the worst nodeee ):",
-        "desc": "This is a test node",
-        "year": 872
+        "id": "battle_ain_jalut",
+        "name": "Battle of Ain Jalut",
+        "desc": "The Mamluks under Sultan Qutuz and Baybars defeat a Mongol detachment in Galilee, the first major battlefield defeat of the Mongols and a turning point of world history.",
+        "year": 1260
+    },
+    {
+        "id": "al_azhar_premier",
+        "name": "Al-Azhar Becomes Premier Center of Islamic Learning",
+        "desc": "Following Baghdad's destruction, the Mamluks revive Al-Azhar as a Sunni institution. It becomes the leading center of Islamic scholarship for centuries.",
+        "year": 1261
+    },
+    {
+        "id": "fall_acre",
+        "name": "Fall of Acre",
+        "desc": "The Mamluks capture Acre, the last major Crusader stronghold, ending nearly two centuries of Latin Christian polities in the Levant.",
+        "year": 1291
+    },
+    {
+        "id": "ghazan_islam",
+        "name": "Ghazan Khan Converts to Islam",
+        "desc": "The Ilkhan Ghazan converts to Islam and makes it the state religion of the Ilkhanate, a generation after his ancestors had destroyed Baghdad.",
+        "year": 1295
+    },
+    {
+        "id": "osman_dynasty",
+        "name": "Osman I Founds the Ottoman Dynasty",
+        "desc": "A small Turkic frontier principality (beylik) under Osman in northwest Anatolia begins absorbing Byzantine territory, planting the seed of the Ottoman Empire.",
+        "year": 1299
+    },
+    {
+        "id": "ibn_taymiyya",
+        "name": "Ibn Taymiyya's Political Theology",
+        "desc": "The Hanbali jurist responds to the trauma of Mongol invasions by developing a theology of resistance to nominally Muslim rulers who fail to apply Islamic law.",
+        "year": 1300
+    },
+    {
+        "id": "mansa_musa_hajj",
+        "name": "Mansa Musa's Pilgrimage to Mecca",
+        "desc": "The Mali emperor's lavish hajj caravan distributes so much gold in Cairo that it depresses the Egyptian gold price for years, advertising West African wealth to the Old World.",
+        "year": 1324
+    },
+    {
+        "id": "timbuktu_university",
+        "name": "Timbuktu and Sankore",
+        "desc": "Mansa Musa develops Timbuktu into a major center of Islamic learning, with the Sankore mosque-university attracting scholars from across the Muslim world.",
+        "year": 1325
+    },
+    {
+        "id": "ibn_battuta",
+        "name": "Ibn Battuta's Travels",
+        "desc": "The Moroccan jurist sets out for hajj and ultimately spends nearly thirty years traveling across the Islamic world from West Africa to China.",
+        "year": 1325
+    },
+    {
+        "id": "ibn_khaldun",
+        "name": "Ibn Khaldun's Muqaddimah",
+        "desc": "Ibn Khaldun composes the Muqaddimah, founding the disciplines of historiography, sociology, and economics on the concept of asabiyyah (group cohesion).",
+        "year": 1377
+    },
+    {
+        "id": "battle_kosovo",
+        "name": "Battle of Kosovo",
+        "desc": "Ottoman forces under Murad I defeat a Serbian-led coalition in Kosovo Polje, securing Ottoman dominance in the Balkans despite the death of the sultan.",
+        "year": 1389
+    },
+    {
+        "id": "timur_invasions",
+        "name": "Timur's Invasions",
+        "desc": "Timur (Tamerlane) launches a series of devastating campaigns from his capital at Samarkand, sacking Delhi in 1398 and crushing the Ottomans at Ankara in 1402.",
+        "year": 1398
+    },
+    {
+        "id": "fall_constantinople",
+        "name": "Conquest of Constantinople",
+        "desc": "Sultan Mehmed II captures Constantinople with massive cannons, ending the Byzantine Empire and converting Hagia Sophia into a mosque. The event reverberates across Eurasia.",
+        "year": 1453
+    },
+    {
+        "id": "songhai_empire",
+        "name": "Songhai Empire Rises",
+        "desc": "Sunni Ali consolidates the Songhai Empire on the upper Niger; under Askia Muhammad it becomes a model Islamic state with a famous hajj of its own.",
+        "year": 1464
+    },
+    {
+        "id": "fall_granada",
+        "name": "Fall of Granada",
+        "desc": "Ferdinand and Isabella accept the surrender of Granada from Muhammad XII (Boabdil), ending nearly 800 years of Muslim political presence in Iberia.",
+        "year": 1492
+    },
+    {
+        "id": "expulsion_iberia",
+        "name": "Expulsion of Muslims and Jews from Iberia",
+        "desc": "The Alhambra Decree expels Sephardic Jews from Castile and Aragon; Muslims face forced conversion or expulsion in the following decades.",
+        "year": 1492
+    },
+    {
+        "id": "ottomans_welcome_jews",
+        "name": "Ottomans Welcome Sephardic Jews",
+        "desc": "Sultan Bayezid II dispatches the Ottoman navy to evacuate expelled Sephardic Jews, settling them in Istanbul, Salonika, Cairo, and other cities.",
+        "year": 1492
+    },
+    {
+        "id": "columbus_voyage",
+        "name": "Columbus's Voyage Using Islamic Science",
+        "desc": "Columbus sails with Arabic-derived navigational tools, star tables, and mathematical methods that descended from Andalusian and Abbasid scholarship.",
+        "year": 1492
+    },
+    {
+        "id": "shah_ismail_safavid",
+        "name": "Shah Ismail Founds the Safavid Empire",
+        "desc": "The young Shah Ismail proclaims Twelver Shia Islam the official faith of his new Persian empire, fundamentally reshaping the religious map of the Middle East.",
+        "year": 1501
+    },
+    {
+        "id": "battle_chaldiran",
+        "name": "Battle of Chaldiran",
+        "desc": "Ottoman firearms and artillery decisively defeat the Safavid cavalry of Shah Ismail, halting Safavid westward expansion and confirming a permanent Sunni-Shia geopolitical divide.",
+        "year": 1514
+    },
+    {
+        "id": "selim_egypt",
+        "name": "Selim I Conquers Mamluk Egypt",
+        "desc": "Sultan Selim I defeats the Mamluk Sultanate at Marj Dabiq and Ridaniya, bringing Egypt, Syria, and the Hijaz under Ottoman rule.",
+        "year": 1517
+    },
+    {
+        "id": "ottoman_caliphate",
+        "name": "Ottoman Caliphate Established",
+        "desc": "With the Hijaz under Ottoman protection and Mamluk legitimacy absorbed, the Ottoman sultans assume the title of caliph and the role of guardians of the holy cities.",
+        "year": 1517
+    },
+    {
+        "id": "suleiman_reign",
+        "name": "Reign of Suleiman the Magnificent",
+        "desc": "Under Suleiman the Ottoman Empire reaches its peak in territory, military power, legal codification (Kanun), and architectural achievement (Sinan).",
+        "year": 1520
+    },
+    {
+        "id": "battle_mohacs",
+        "name": "Battle of Mohacs",
+        "desc": "Suleiman annihilates the Hungarian army in two hours, killing King Louis II and opening Central Europe to Ottoman influence.",
+        "year": 1526
+    },
+    {
+        "id": "mughal_founded",
+        "name": "Mughal Empire Founded",
+        "desc": "Babur, a descendant of both Timur and Genghis Khan, defeats the Delhi Sultanate at Panipat with field artillery, founding the Mughal Empire.",
+        "year": 1526
+    },
+    {
+        "id": "siege_vienna",
+        "name": "First Siege of Vienna",
+        "desc": "Suleiman's forces besiege Vienna but withdraw at the onset of winter, marking the high-water mark of Ottoman expansion into Central Europe.",
+        "year": 1529
+    },
+    {
+        "id": "ottoman_walls_jerusalem",
+        "name": "Ottoman Rebuilding of Jerusalem Walls",
+        "desc": "Suleiman commissions the rebuilding of Jerusalem's walls (still standing today) and refurbishes the Dome of the Rock with the famous blue Iznik tile work.",
+        "year": 1535
+    },
+    {
+        "id": "akbar_reign",
+        "name": "Reign of Akbar the Great",
+        "desc": "The Mughal emperor Akbar consolidates a multi-religious empire across most of the Indian subcontinent, abolishing the jizya and integrating Hindu nobles into the administration.",
+        "year": 1556
     }
 ]

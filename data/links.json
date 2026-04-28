@@ -1,62 +1,269 @@
 [
-    {
-        "source": "A",
-        "target": "Muhaha"
-    },
-    {
-        "source": "Hihihi",
-        "target": "C"
-    },
-    {
-        "source": "Hohhoh",
-        "target": "D"
-    },
-    {
-        "source": "Hahaha",
-        "target": "E"
-    },
-    {
-        "source": "D",
-        "target": "F"
-    },
-    {
-        "source": "A",
-        "target": "Muhaha"
-    },
-    {
-        "source": "B",
-        "target": "C"
-    },
-    {
-        "source": "Hahaha",
-        "target": "E"
-    },
-    {
-        "source": "D",
-        "target": "F"
-    },
-    {
-        "source": "C",
-        "target": "E"
-    },
-    {
-        "source": "A",
-        "target": "Muhaha"
-    },
-    {
-        "source": "Muhaha",
-        "target": "Hahaha"
-    },
-    {
-        "source": "Hahaha",
-        "target": "D"
-    },
-    {
-        "source": "Hihihi",
-        "target": "Hohhoh"
-    },
-    {
-        "source": "Muhaha",
-        "target": "Hihihi"
-    }
+    { "source": "tribal_arabia", "target": "muhammad_birth" },
+    { "source": "tribal_arabia", "target": "early_persecution" },
+
+    { "source": "muhammad_birth", "target": "khadijah_marriage" },
+    { "source": "khadijah_marriage", "target": "first_revelation" },
+
+    { "source": "first_revelation", "target": "early_persecution" },
+    { "source": "first_revelation", "target": "isra_miraj" },
+
+    { "source": "khadijah_marriage", "target": "year_of_sorrow" },
+    { "source": "early_persecution", "target": "first_abyssinia" },
+    { "source": "early_persecution", "target": "banu_hashim_boycott" },
+    { "source": "early_persecution", "target": "pledges_aqaba" },
+    { "source": "early_persecution", "target": "hijra_madinah" },
+    { "source": "banu_hashim_boycott", "target": "year_of_sorrow" },
+    { "source": "year_of_sorrow", "target": "isra_miraj" },
+
+    { "source": "isra_miraj", "target": "pledges_aqaba" },
+    { "source": "isra_miraj", "target": "dome_of_rock" },
+    { "source": "isra_miraj", "target": "al_aqsa_built" },
+
+    { "source": "pledges_aqaba", "target": "hijra_madinah" },
+    { "source": "hijra_madinah", "target": "constitution_madinah" },
+    { "source": "hijra_madinah", "target": "qibla_change" },
+    { "source": "hijra_madinah", "target": "battle_badr" },
+    { "source": "hijra_madinah", "target": "hijri_calendar" },
+
+    { "source": "constitution_madinah", "target": "battle_badr" },
+    { "source": "battle_badr", "target": "battle_uhud" },
+    { "source": "battle_uhud", "target": "battle_trench" },
+    { "source": "battle_trench", "target": "treaty_hudaybiyyah" },
+    { "source": "treaty_hudaybiyyah", "target": "conquest_mecca" },
+    { "source": "conquest_mecca", "target": "farewell_sermon" },
+    { "source": "conquest_mecca", "target": "death_prophet" },
+    { "source": "farewell_sermon", "target": "death_prophet" },
+
+    { "source": "death_prophet", "target": "preservation_sunnah" },
+    { "source": "death_prophet", "target": "abu_bakr_caliphate" },
+    { "source": "death_prophet", "target": "ridda_wars" },
+    { "source": "death_prophet", "target": "sunni_shia_split" },
+
+    { "source": "abu_bakr_caliphate", "target": "ridda_wars" },
+    { "source": "abu_bakr_caliphate", "target": "quran_compilation" },
+    { "source": "abu_bakr_caliphate", "target": "umar_caliphate" },
+    { "source": "ridda_wars", "target": "battle_yamama" },
+    { "source": "battle_yamama", "target": "quran_compilation" },
+    { "source": "quran_compilation", "target": "mushaf_uthman" },
+
+    { "source": "umar_caliphate", "target": "battle_yarmouk" },
+    { "source": "umar_caliphate", "target": "battle_qadisiyyah" },
+    { "source": "umar_caliphate", "target": "covenant_umar" },
+    { "source": "umar_caliphate", "target": "diwan_welfare" },
+    { "source": "umar_caliphate", "target": "hijri_calendar" },
+    { "source": "umar_caliphate", "target": "founding_garrison_cities" },
+    { "source": "umar_caliphate", "target": "assassination_umar" },
+
+    { "source": "battle_qadisiyyah", "target": "battle_nahavand" },
+    { "source": "battle_yarmouk", "target": "conquest_jerusalem" },
+    { "source": "battle_yarmouk", "target": "conquest_egypt" },
+    { "source": "battle_qadisiyyah", "target": "founding_garrison_cities" },
+    { "source": "conquest_jerusalem", "target": "covenant_umar" },
+    { "source": "conquest_jerusalem", "target": "dome_of_rock" },
+    { "source": "covenant_umar", "target": "saladin_jerusalem" },
+
+    { "source": "assassination_umar", "target": "uthman_caliphate" },
+    { "source": "uthman_caliphate", "target": "mushaf_uthman" },
+    { "source": "uthman_caliphate", "target": "first_islamic_navy" },
+    { "source": "uthman_caliphate", "target": "assassination_uthman" },
+
+    { "source": "assassination_uthman", "target": "ali_caliphate" },
+    { "source": "assassination_uthman", "target": "battle_camel" },
+    { "source": "assassination_uthman", "target": "battle_siffin" },
+    { "source": "assassination_uthman", "target": "sunni_shia_split" },
+
+    { "source": "ali_caliphate", "target": "battle_camel" },
+    { "source": "ali_caliphate", "target": "battle_siffin" },
+    { "source": "battle_siffin", "target": "kharijites_emerge" },
+    { "source": "battle_siffin", "target": "umayyad_caliphate" },
+    { "source": "battle_siffin", "target": "sunni_shia_split" },
+    { "source": "kharijites_emerge", "target": "assassination_ali" },
+    { "source": "assassination_ali", "target": "umayyad_caliphate" },
+    { "source": "assassination_ali", "target": "karbala" },
+
+    { "source": "umayyad_caliphate", "target": "karbala" },
+    { "source": "karbala", "target": "sunni_shia_split" },
+    { "source": "karbala", "target": "shah_ismail_safavid" },
+
+    { "source": "umayyad_caliphate", "target": "dome_of_rock" },
+    { "source": "umayyad_caliphate", "target": "al_aqsa_built" },
+    { "source": "umayyad_caliphate", "target": "arabic_administration" },
+    { "source": "umayyad_caliphate", "target": "tariq_invasion" },
+    { "source": "umayyad_caliphate", "target": "conquest_sindh" },
+    { "source": "umayyad_caliphate", "target": "battle_tours" },
+    { "source": "umayyad_caliphate", "target": "abbasid_revolution" },
+    { "source": "dome_of_rock", "target": "al_aqsa_built" },
+
+    { "source": "tariq_invasion", "target": "visigothic_collapse" },
+    { "source": "tariq_invasion", "target": "battle_tours" },
+    { "source": "visigothic_collapse", "target": "emirate_cordoba" },
+    { "source": "battle_tours", "target": "cordoba_zenith" },
+
+    { "source": "abbasid_revolution", "target": "baghdad_founded" },
+    { "source": "abbasid_revolution", "target": "abd_rahman_escapes" },
+    { "source": "abbasid_revolution", "target": "fatimid_caliphate" },
+    { "source": "abd_rahman_escapes", "target": "emirate_cordoba" },
+    { "source": "emirate_cordoba", "target": "great_mosque_cordoba" },
+    { "source": "emirate_cordoba", "target": "abd_rahman_iii" },
+
+    { "source": "baghdad_founded", "target": "harun_al_rashid" },
+    { "source": "baghdad_founded", "target": "al_mamun_caliphate" },
+    { "source": "baghdad_founded", "target": "paper_industry" },
+    { "source": "baghdad_founded", "target": "bimaristans" },
+    { "source": "baghdad_founded", "target": "indian_numerals" },
+    { "source": "baghdad_founded", "target": "al_sufi_stars" },
+    { "source": "harun_al_rashid", "target": "al_mamun_caliphate" },
+
+    { "source": "battle_nahavand", "target": "baghdad_founded" },
+    { "source": "battle_nahavand", "target": "greek_translations" },
+    { "source": "battle_nahavand", "target": "indian_numerals" },
+
+    { "source": "battle_talas", "target": "paper_industry" },
+    { "source": "paper_industry", "target": "house_of_wisdom" },
+    { "source": "paper_industry", "target": "greek_translations" },
+
+    { "source": "al_mamun_caliphate", "target": "house_of_wisdom" },
+    { "source": "al_mamun_caliphate", "target": "greek_translations" },
+    { "source": "al_mamun_caliphate", "target": "al_khwarizmi_algebra" },
+    { "source": "al_mamun_caliphate", "target": "indian_numerals" },
+
+    { "source": "house_of_wisdom", "target": "greek_translations" },
+    { "source": "house_of_wisdom", "target": "al_khwarizmi_algebra" },
+    { "source": "house_of_wisdom", "target": "al_sufi_stars" },
+    { "source": "house_of_wisdom", "target": "toledo_translators" },
+
+    { "source": "indian_numerals", "target": "al_khwarizmi_algebra" },
+    { "source": "greek_translations", "target": "al_khwarizmi_algebra" },
+    { "source": "greek_translations", "target": "ibn_alhaytham" },
+    { "source": "greek_translations", "target": "ibn_sina_canon" },
+    { "source": "greek_translations", "target": "ibn_rushd" },
+    { "source": "greek_translations", "target": "al_razi" },
+    { "source": "greek_translations", "target": "al_sufi_stars" },
+    { "source": "greek_translations", "target": "toledo_translators" },
+
+    { "source": "bimaristans", "target": "al_razi" },
+    { "source": "bimaristans", "target": "ibn_sina_canon" },
+    { "source": "bimaristans", "target": "ibn_nafis" },
+    { "source": "al_razi", "target": "ibn_sina_canon" },
+    { "source": "ibn_sina_canon", "target": "ibn_nafis" },
+    { "source": "ibn_alhaytham", "target": "ibn_nafis" },
+
+    { "source": "al_khwarizmi_algebra", "target": "toledo_translators" },
+    { "source": "ibn_sina_canon", "target": "toledo_translators" },
+    { "source": "ibn_rushd", "target": "toledo_translators" },
+    { "source": "al_sufi_stars", "target": "toledo_translators" },
+
+    { "source": "conquest_egypt", "target": "fatimid_caliphate" },
+    { "source": "fatimid_caliphate", "target": "al_azhar_founded" },
+    { "source": "fatimid_caliphate", "target": "al_hakim_destroys_church" },
+    { "source": "fatimid_caliphate", "target": "abd_rahman_iii" },
+    { "source": "fatimid_caliphate", "target": "saladin_unites" },
+
+    { "source": "abd_rahman_iii", "target": "cordoba_zenith" },
+    { "source": "great_mosque_cordoba", "target": "cordoba_zenith" },
+    { "source": "cordoba_zenith", "target": "pope_sylvester" },
+    { "source": "cordoba_zenith", "target": "caliphate_collapse_andalus" },
+    { "source": "indian_numerals", "target": "pope_sylvester" },
+    { "source": "al_khwarizmi_algebra", "target": "pope_sylvester" },
+
+    { "source": "caliphate_collapse_andalus", "target": "toledo_falls" },
+    { "source": "caliphate_collapse_andalus", "target": "almoravid_intervention" },
+    { "source": "caliphate_collapse_andalus", "target": "fall_cordoba" },
+    { "source": "toledo_falls", "target": "toledo_translators" },
+    { "source": "almoravid_intervention", "target": "almohad_dynasty" },
+    { "source": "almohad_dynasty", "target": "ibn_rushd" },
+    { "source": "almohad_dynasty", "target": "fall_cordoba" },
+    { "source": "fall_cordoba", "target": "fall_seville" },
+    { "source": "fall_seville", "target": "nasrid_granada" },
+    { "source": "nasrid_granada", "target": "alhambra_construction" },
+    { "source": "nasrid_granada", "target": "fall_granada" },
+    { "source": "fall_granada", "target": "expulsion_iberia" },
+    { "source": "fall_granada", "target": "columbus_voyage" },
+    { "source": "expulsion_iberia", "target": "ottomans_welcome_jews" },
+
+    { "source": "al_sufi_stars", "target": "columbus_voyage" },
+    { "source": "al_khwarizmi_algebra", "target": "columbus_voyage" },
+    { "source": "indian_numerals", "target": "columbus_voyage" },
+    { "source": "toledo_translators", "target": "columbus_voyage" },
+
+    { "source": "al_hakim_destroys_church", "target": "urban_calls_crusade" },
+    { "source": "battle_manzikert", "target": "seljuk_anatolia" },
+    { "source": "battle_manzikert", "target": "urban_calls_crusade" },
+    { "source": "battle_manzikert", "target": "osman_dynasty" },
+    { "source": "seljuk_anatolia", "target": "urban_calls_crusade" },
+    { "source": "seljuk_anatolia", "target": "osman_dynasty" },
+    { "source": "urban_calls_crusade", "target": "first_crusade" },
+    { "source": "first_crusade", "target": "crusader_jerusalem" },
+    { "source": "crusader_jerusalem", "target": "zangi_unifies" },
+    { "source": "zangi_unifies", "target": "nur_ad_din" },
+    { "source": "nur_ad_din", "target": "saladin_unites" },
+    { "source": "saladin_unites", "target": "battle_hattin" },
+    { "source": "battle_hattin", "target": "saladin_jerusalem" },
+    { "source": "saladin_jerusalem", "target": "third_crusade" },
+    { "source": "saladin_unites", "target": "mamluk_sultanate" },
+    { "source": "mamluk_sultanate", "target": "fall_acre" },
+
+    { "source": "genghis_unifies", "target": "mongol_khwarezm" },
+    { "source": "genghis_unifies", "target": "hulagu_mission" },
+    { "source": "mongol_khwarezm", "target": "hulagu_mission" },
+    { "source": "hulagu_mission", "target": "sack_baghdad" },
+    { "source": "ibn_alkami", "target": "sack_baghdad" },
+    { "source": "sack_baghdad", "target": "wisdom_destroyed" },
+    { "source": "sack_baghdad", "target": "abbasid_ends" },
+    { "source": "sack_baghdad", "target": "battle_ain_jalut" },
+    { "source": "wisdom_destroyed", "target": "al_azhar_premier" },
+    { "source": "abbasid_ends", "target": "al_azhar_premier" },
+    { "source": "abbasid_ends", "target": "ibn_taymiyya" },
+    { "source": "abbasid_ends", "target": "ghazan_islam" },
+    { "source": "abbasid_ends", "target": "osman_dynasty" },
+    { "source": "abbasid_ends", "target": "ottoman_caliphate" },
+    { "source": "al_azhar_founded", "target": "al_azhar_premier" },
+    { "source": "al_azhar_premier", "target": "ibn_khaldun" },
+
+    { "source": "mamluk_sultanate", "target": "battle_ain_jalut" },
+    { "source": "berke_islam", "target": "battle_ain_jalut" },
+    { "source": "battle_ain_jalut", "target": "ghazan_islam" },
+    { "source": "battle_ain_jalut", "target": "mamluk_sultanate" },
+
+    { "source": "ghana_islam", "target": "mali_empire" },
+    { "source": "mali_empire", "target": "mansa_musa_hajj" },
+    { "source": "mali_empire", "target": "timbuktu_university" },
+    { "source": "mansa_musa_hajj", "target": "timbuktu_university" },
+    { "source": "mansa_musa_hajj", "target": "ibn_battuta" },
+    { "source": "mali_empire", "target": "songhai_empire" },
+
+    { "source": "conquest_sindh", "target": "mahmud_ghazni" },
+    { "source": "mahmud_ghazni", "target": "delhi_sultanate" },
+    { "source": "delhi_sultanate", "target": "mughal_founded" },
+    { "source": "timur_invasions", "target": "delhi_sultanate" },
+    { "source": "timur_invasions", "target": "mughal_founded" },
+    { "source": "timur_invasions", "target": "osman_dynasty" },
+    { "source": "mughal_founded", "target": "akbar_reign" },
+
+    { "source": "osman_dynasty", "target": "battle_kosovo" },
+    { "source": "battle_kosovo", "target": "fall_constantinople" },
+    { "source": "osman_dynasty", "target": "fall_constantinople" },
+    { "source": "fall_constantinople", "target": "ottomans_welcome_jews" },
+    { "source": "fall_constantinople", "target": "battle_chaldiran" },
+    { "source": "fall_constantinople", "target": "selim_egypt" },
+
+    { "source": "sunni_shia_split", "target": "fatimid_caliphate" },
+    { "source": "sunni_shia_split", "target": "shah_ismail_safavid" },
+    { "source": "shah_ismail_safavid", "target": "battle_chaldiran" },
+    { "source": "battle_chaldiran", "target": "selim_egypt" },
+    { "source": "battle_chaldiran", "target": "mughal_founded" },
+    { "source": "mamluk_sultanate", "target": "selim_egypt" },
+    { "source": "selim_egypt", "target": "ottoman_caliphate" },
+    { "source": "selim_egypt", "target": "suleiman_reign" },
+    { "source": "ottoman_caliphate", "target": "suleiman_reign" },
+    { "source": "suleiman_reign", "target": "battle_mohacs" },
+    { "source": "suleiman_reign", "target": "siege_vienna" },
+    { "source": "suleiman_reign", "target": "ottoman_walls_jerusalem" },
+    { "source": "battle_mohacs", "target": "siege_vienna" },
+    { "source": "selim_egypt", "target": "ottoman_walls_jerusalem" },
+
+    { "source": "ibn_battuta", "target": "ibn_khaldun" },
+
+    { "source": "preservation_sunnah", "target": "ibn_taymiyya" }
 ]
