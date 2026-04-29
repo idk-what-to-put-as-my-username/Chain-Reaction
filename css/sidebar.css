@@ -183,3 +183,148 @@
 .panel-link:hover {
     color: #f5e8bc;
 }
+
+/* ─── What If Analysis Panel ─── */
+.what-if-analysis {
+    border-color: rgba(255, 140, 40, 0.2);
+}
+
+.what-if-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 140, 40, 0.15);
+}
+
+.what-if-label {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(255, 160, 60, 0.6);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.what-if-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f5e8bc;
+    line-height: 1.5;
+}
+
+.what-if-title em {
+    color: #ff9e5e;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.impact-summary {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: rgba(255, 100, 30, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 120, 40, 0.12);
+}
+
+.impact-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff8c3a;
+    line-height: 1;
+}
+
+.impact-text {
+    font-size: 13px;
+    color: #c5a070;
+}
+
+.impact-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #a09070;
+}
+
+.impact-time strong {
+    color: #d4b880;
+    font-weight: 600;
+}
+
+.erased-section-label {
+    color: rgba(255, 140, 60, 0.7) !important;
+}
+
+.erased-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.erased-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255, 60, 60, 0.06);
+    border: 1px solid rgba(255, 60, 60, 0.1);
+    font-size: 13px;
+}
+
+.erased-item.erased-root {
+    background: rgba(255, 60, 60, 0.12);
+    border-color: rgba(255, 60, 60, 0.2);
+}
+
+.erased-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff4444;
+    flex-shrink: 0;
+}
+
+.erased-root .erased-bullet {
+    background: #ff2222;
+    box-shadow: 0 0 6px rgba(255, 40, 40, 0.5);
+}
+
+.erased-name {
+    color: #e8d8c0;
+    flex: 1;
+}
+
+.erased-root .erased-name {
+    font-weight: 600;
+    color: #f5e0c8;
+}
+
+.erased-year {
+    color: #a09070;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+}
+
+.what-if-reset-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 160, 40, 0.3);
+    background: rgba(255, 140, 30, 0.1);
+    color: #ffb060;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.what-if-reset-btn:hover {
+    background: rgba(255, 140, 30, 0.18);
+    border-color: rgba(255, 160, 40, 0.5);
+    color: #ffc080;
+}

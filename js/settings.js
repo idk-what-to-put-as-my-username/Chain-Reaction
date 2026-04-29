@@ -1,14 +1,14 @@
-import { link, node, reRender } from "./state.js"
+import { defaultColour, reRender } from "./state.js"
 
 const settingsContainer = document.getElementById("settings");
 
 function setnodeColour(colour) {
-    node.colour = colour
+    defaultColour = colour
     reRender()
 }
 
 function setLinkColour(colour) {
-    link.colour = colour
+    defaultColour = colour
     reRender()
 }
 

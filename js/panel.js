@@ -1,4 +1,5 @@
-import { onNodeSelected, links, nodes, selectNode, CEtoAH } from './state.js';
+import { onNodeSelected, links, nodes, selectNode, CEtoAH, selectedNode } from './state.js';
+import { whatIfMode, removedNode, onWhatIfModeToggle, onRemovedNodeChange, getDownstreamNodes, toggleWhatIfMode } from './state.js';
 
 const sidebar = document.getElementById('sidebar');
 const sidebarHeader = document.querySelector('.sidebar-header');
@@ -62,6 +63,60 @@ function formatNodeInfo(node) {
     `;
 }
 
+function formatWhatIfAnalysis(removed) {
+    if (!removed) {
+        return `
+            <div class="panel-card panel-card-empty">
+                <div class="panel-card-name">What If Mode</div>
+                <div class="panel-card-desc">Click any node on the graph to simulate its removal from history and see the alternate timeline.</div>
+            </div>
+        `;
+    }
+
+    const downstreamIds = getDownstreamNodes(removed.id);
+    const erasedNodes = [removed, ...downstreamIds.map(id => nodes.find(n => n.id === id)).filter(Boolean)];
+    const erasedCount = erasedNodes.length;
+    const years = erasedNodes.map(n => n.year).filter(Boolean).sort((a, b) => a - b);
+    const minYear = years.length ? years[0] : null;
+    const maxYear = years.length ? years[years.length - 1] : null;
+
+    const erasedListHtml = erasedNodes.map((n, i) => `
+        <div class="erased-item ${i === 0 ? 'erased-root' : ''}">
+            <span class="erased-bullet"></span>
+            <span class="erased-name">${n.name}</span>
+            <span class="erased-year">${n.year ?? '—'} CE</span>
+        </div>
+    `).join('');
+
+    const timeSpanHtml = (minYear && maxYear) ? `
+        <div class="impact-time">
+            <span>Timeline affected:</span>
+            <strong>${minYear} – ${maxYear} CE</strong>
+        </div>
+    ` : '';
+
+    return `
+        <div class="panel-card what-if-analysis">
+            <div class="what-if-header">
+                <div class="what-if-label">ALTERNATE TIMELINE</div>
+                <div class="what-if-title">What if <em>${removed.name}</em> never happened?</div>
+            </div>
+            <div class="impact-summary">
+                <div class="impact-number">${erasedCount}</div>
+                <div class="impact-text">event${erasedCount !== 1 ? 's' : ''} erased from history</div>
+            </div>
+            ${timeSpanHtml}
+            <div class="panel-section">
+                <div class="panel-section-label erased-section-label">Erased Events</div>
+                <div class="erased-list">
+                    ${erasedListHtml}
+                </div>
+            </div>
+            <button class="what-if-reset-btn" onclick="resetWhatIf()">↺ Reset Simulation</button>
+        </div>
+    `;
+}
+
 function renderSidebarPanel(node) {
     if (node) {
         sidebar.classList.add('open')
@@ -73,8 +128,33 @@ function renderSidebarPanel(node) {
     sidebarContent.scrollTop = 0;
 }
 
+function renderWhatIfPanel(removed) {
+    sidebar.classList.add('open');
+    sidebarHeader.innerHTML = '<span class="sidebar-title"> W H A T &nbsp I F ? </span>';
+    sidebarContent.innerHTML = formatWhatIfAnalysis(removed);
+    sidebarContent.scrollTop = 0;
+}
+
 renderSidebarPanel(null);
 onNodeSelected(renderSidebarPanel);
 
-// Make selectNodeById global for onclick
+onWhatIfModeToggle((active) => {
+    if (active) {
+        renderWhatIfPanel(removedNode);
+    } else {
+        renderSidebarPanel(selectedNode);
+    }
+});
+
+onRemovedNodeChange((node) => {
+    if (whatIfMode) {
+        renderWhatIfPanel(node);
+    }
+});
+
+// Make functions global for onclick
 window.selectNodeById = selectNodeById;
+window.resetWhatIf = () => {
+    toggleWhatIfMode();
+};
+

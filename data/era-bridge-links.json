@@ -1,0 +1,12 @@
+[
+    { "source": "death_prophet", "target": "abu_bakr_caliphate", "bridge": true },
+    { "source": "assassination_ali", "target": "umayyad_caliphate", "bridge": true },
+    { "source": "abbasid_revolution", "target": "baghdad_founded", "bridge": true },
+    { "source": "abbasid_ends", "target": "battle_ain_jalut", "bridge": true },
+    { "source": "fall_granada", "target": "fall_constantinople", "bridge": true },
+    { "source": "crusader_jerusalem", "target": "zangi_unifies", "bridge": true },
+    { "source": "ghana_islam", "target": "mali_empire", "bridge": true },
+    { "source": "conquest_sindh", "target": "mahmud_ghazni", "bridge": true },
+    { "source": "osman_dynasty", "target": "fall_constantinople", "bridge": true },
+    { "source": "karbala", "target": "shah_ismail_safavid", "bridge": true }
+]
