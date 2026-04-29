@@ -3,7 +3,7 @@ import { selectNode, selectedNode, onNodeSelected } from "./state.js"
 import { linkThickness, nodeRadius, defaultColour, highlight, maxLen, forceLinkDistance, forceLinkStrength, forceRepulsionStrength, forceCollisionRadius, glowControl, onRerender } from "./state.js"
 import { whatIfMode, removedNode, toggleWhatIfMode, setRemovedNode, onWhatIfModeToggle, onRemovedNodeChange, getDownstreamNodes } from "./state.js"
 import { ERAS, NODE_ERA_MAP, getEraColor, ERA_BRIDGE_LINKS } from "./state.js"
-import { onEraFilterChange, isNodeVisible, areAllErasActive, activeEras } from "./state.js"
+import { onEraFilterChange, isNodeVisible, areAllErasActive, onTimelineChange, isNodeBeforePresent } from "./state.js"
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -257,11 +257,12 @@ function getNodeId(d) {
 
 function applyEraFilter() {
   const allActive = areAllErasActive();
-  const visibleNodes = nodes.filter(n => isNodeVisible(n.id));
+  const visibleNodes = nodes.filter(n => isNodeVisible(n.id) && isNodeBeforePresent(n.id));
   const visibleLinks = links.filter(l => {
     const srcId = getNodeId(l.source);
     const tgtId = getNodeId(l.target);
-    return isNodeVisible(srcId) && isNodeVisible(tgtId);
+    return isNodeVisible(srcId) && isNodeVisible(tgtId)
+        && isNodeBeforePresent(srcId) && isNodeBeforePresent(tgtId);
   });
 
   // Update simulation data - exclude hidden from physics
@@ -281,7 +282,8 @@ function applyEraFilter() {
   linkGroups.each(function(d) {
     const srcId = getNodeId(d.source);
     const tgtId = getNodeId(d.target);
-    const visible = isNodeVisible(srcId) && isNodeVisible(tgtId);
+    const visible = isNodeVisible(srcId) && isNodeVisible(tgtId)
+                 && isNodeBeforePresent(srcId) && isNodeBeforePresent(tgtId);
     d3.select(this)
       .classed("era-hidden", !visible)
       .style("opacity", visible ? null : 0);
@@ -308,6 +310,7 @@ onEraFilterChange(() => {
     applyEraFilter();
 });
 
+onTimelineChange(() => applyEraFilter());
 applyEraFilter();
 
 
@@ -442,4 +445,3 @@ onRerender(() => {
     ERAS.forEach(era => createEraGradient(era.id, era.color));
     linkLines.attr("stroke", d => getLinkColor(d));
 });
-

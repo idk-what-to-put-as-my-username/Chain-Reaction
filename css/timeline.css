@@ -1,0 +1,291 @@
+/* Timeline styles */
+#timeline-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1060;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Collapsed tab shown when timeline is hidden */
+#timeline-tab {
+    pointer-events: all;
+    align-self: center;
+    margin-bottom: 0;
+    padding: 5px 18px 4px;
+    background: rgba(8, 8, 16, 0.88);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.38);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    backdrop-filter: blur(12px);
+}
+
+#timeline-tab:hover {
+    color: rgba(255,255,255,0.8);
+    background: rgba(14,14,26,0.96);
+}
+
+#timeline-tab .tab-arrow {
+    font-size: 0.55rem;
+    transition: transform 0.25s ease;
+    display: inline-block;
+}
+
+#timeline-container.open #timeline-tab .tab-arrow {
+    transform: rotate(180deg);
+}
+
+/* Main panel */
+#timeline-panel {
+    pointer-events: all;
+    background: rgba(8, 8, 16, 0.95);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+    padding: 14px 24px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+#timeline-container.open #timeline-panel {
+    transform: translateY(0);
+}
+
+/* Top row: present year + zoom controls */
+.timeline-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.timeline-present-display {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+}
+
+.timeline-present-display .present-year-val {
+    color: #c9a84c;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.timeline-zoom-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.timeline-zoom-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.28);
+    text-transform: uppercase;
+}
+
+.timeline-zoom-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    line-height: 1;
+    padding: 0;
+}
+
+.timeline-zoom-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-color: rgba(255,255,255,0.25);
+}
+
+.timeline-zoom-btn:active {
+    transform: scale(0.9);
+}
+
+.timeline-zoom-level {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.3);
+    min-width: 28px;
+    text-align: center;
+}
+
+/* The scrollable track area */
+.timeline-track-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 72px;
+    cursor: grab;
+}
+
+.timeline-track-wrapper:active {
+    cursor: grabbing;
+}
+
+/* Era bands under the track */
+.timeline-era-bands {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    pointer-events: none;
+}
+
+.timeline-era-band {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0.07;
+    border-radius: 3px;
+    transition: opacity 0.3s;
+}
+
+/* Marker ticks */
+.timeline-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.timeline-tick {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-tick-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(255,255,255,0.12);
+}
+
+.timeline-tick-line.major {
+    background: rgba(255,255,255,0.22);
+    width: 1px;
+}
+
+.timeline-tick-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.56rem;
+    color: rgba(255,255,255,0.3);
+    white-space: nowrap;
+    margin-top: 3px;
+    letter-spacing: 0.06em;
+}
+
+/* Node dots on the track */
+.timeline-node-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.3s;
+    opacity: 0.6;
+}
+
+.timeline-node-dot:hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 1;
+    z-index: 10;
+}
+
+.timeline-node-dot.future {
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+/* Present cursor line */
+.timeline-cursor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #c9a84c;
+    box-shadow: 0 0 8px rgba(201,168,76,0.7), 0 0 2px rgba(201,168,76,1);
+    pointer-events: none;
+    z-index: 20;
+    border-radius: 1px;
+}
+
+.timeline-cursor-head {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #c9a84c;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(201,168,76,0.9);
+}
+
+/* Future overlay (right of cursor) */
+.timeline-future-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.45);
+    pointer-events: none;
+    z-index: 15;
+    border-left: 1px dashed rgba(201,168,76,0.3);
+}
+
+/* Drag handle: the whole scrubber bar is draggable, but we add a visual playhead */
+.timeline-scrubber {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 18;
+    cursor: crosshair;
+}
+
+/* Hidden nodes counter */
+.timeline-hidden-count {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    color: rgba(201,168,76,0.55);
+    letter-spacing: 0.1em;
+    text-align: right;
+    min-width: 120px;
+}
