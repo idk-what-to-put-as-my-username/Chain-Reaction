@@ -4,13 +4,31 @@
         "label": "Prophetic Era",
         "shortLabel": "Prophetic",
         "color": "rgb(255, 215, 100)",
-        "years": [570, 632],
+        "years": [
+            570,
+            632
+        ],
         "nodes": [
-            "muhammad_birth", "tribal_arabia", "khadijah_marriage", "first_revelation",
-            "early_persecution", "first_abyssinia", "banu_hashim_boycott", "year_of_sorrow",
-            "isra_miraj", "pledges_aqaba", "hijra_madinah", "constitution_madinah",
-            "qibla_change", "battle_badr", "battle_uhud", "battle_trench",
-            "treaty_hudaybiyyah", "conquest_mecca", "farewell_sermon", "death_prophet"
+            "muhammad_birth",
+            "tribal_arabia",
+            "khadijah_marriage",
+            "first_revelation",
+            "early_persecution",
+            "first_abyssinia",
+            "banu_hashim_boycott",
+            "year_of_sorrow",
+            "isra_miraj",
+            "pledges_aqaba",
+            "hijra_madinah",
+            "constitution_madinah",
+            "qibla_change",
+            "battle_badr",
+            "battle_uhud",
+            "battle_trench",
+            "treaty_hudaybiyyah",
+            "conquest_mecca",
+            "farewell_sermon",
+            "death_prophet"
         ]
     },
     {
@@ -18,14 +36,35 @@
         "label": "Rashidun Caliphate",
         "shortLabel": "Rashidun",
         "color": "rgb(100, 210, 180)",
-        "years": [632, 661],
+        "years": [
+            632,
+            661
+        ],
         "nodes": [
-            "abu_bakr_caliphate", "ridda_wars", "battle_yamama", "quran_compilation",
-            "umar_caliphate", "battle_yarmouk", "battle_qadisiyyah", "conquest_jerusalem",
-            "covenant_umar", "conquest_egypt", "battle_nahavand", "founding_garrison_cities",
-            "diwan_welfare", "hijri_calendar", "assassination_umar",
-            "uthman_caliphate", "mushaf_uthman", "first_islamic_navy", "assassination_uthman",
-            "ali_caliphate", "battle_camel", "battle_siffin", "kharijites_emerge", "assassination_ali"
+            "abu_bakr_caliphate",
+            "ridda_wars",
+            "battle_yamama",
+            "quran_compilation",
+            "umar_caliphate",
+            "battle_yarmouk",
+            "battle_qadisiyyah",
+            "conquest_jerusalem",
+            "covenant_umar",
+            "conquest_egypt",
+            "battle_nahavand",
+            "founding_garrison_cities",
+            "diwan_welfare",
+            "hijri_calendar",
+            "assassination_umar",
+            "uthman_caliphate",
+            "mushaf_uthman",
+            "first_islamic_navy",
+            "assassination_uthman",
+            "ali_caliphate",
+            "battle_camel",
+            "battle_siffin",
+            "kharijites_emerge",
+            "assassination_ali"
         ]
     },
     {
@@ -33,11 +72,22 @@
         "label": "Umayyad Caliphate",
         "shortLabel": "Umayyad",
         "color": "rgb(180, 130, 255)",
-        "years": [661, 750],
+        "years": [
+            661,
+            750
+        ],
         "nodes": [
-            "umayyad_caliphate", "karbala", "sunni_shia_split", "dome_of_rock",
-            "arabic_administration", "al_aqsa_built", "tariq_invasion", "visigothic_collapse",
-            "conquest_sindh", "battle_tours", "abbasid_revolution"
+            "umayyad_caliphate",
+            "karbala",
+            "sunni_shia_split",
+            "dome_of_rock",
+            "arabic_administration",
+            "al_aqsa_built",
+            "tariq_invasion",
+            "visigothic_collapse",
+            "conquest_sindh",
+            "battle_tours",
+            "abbasid_revolution"
         ]
     },
     {
@@ -45,14 +95,35 @@
         "label": "Abbasid Golden Age",
         "shortLabel": "Abbasid",
         "color": "rgb(80, 175, 255)",
-        "years": [750, 1258],
+        "years": [
+            750,
+            1258
+        ],
         "nodes": [
-            "battle_talas", "abd_rahman_escapes", "baghdad_founded", "harun_al_rashid",
-            "paper_industry", "bimaristans", "al_mamun_caliphate", "al_khwarizmi_algebra",
-            "indian_numerals", "house_of_wisdom", "greek_translations", "al_razi",
-            "preservation_sunnah", "al_sufi_stars",
-            "genghis_unifies", "mongol_khwarezm", "berke_islam", "hulagu_mission",
-            "ibn_alkami", "sack_baghdad", "wisdom_destroyed", "abbasid_ends"
+            "battle_talas",
+            "abd_rahman_escapes",
+            "baghdad_founded",
+            "harun_al_rashid",
+            "paper_industry",
+            "bimaristans",
+            "al_mamun_caliphate",
+            "al_khwarizmi_algebra",
+            "indian_numerals",
+            "house_of_wisdom",
+            "greek_translations",
+            "al_razi",
+            "preservation_sunnah",
+            "al_sufi_stars",
+            "genghis_unifies",
+            "mongol_khwarezm",
+            "berke_islam",
+            "hulagu_mission",
+            "ibn_alkami",
+            "sack_baghdad",
+            "wisdom_destroyed",
+            "abbasid_ends",
+            "fatimid_caliphate",
+            "al_azhar_founded"
         ]
     },
     {
@@ -60,13 +131,29 @@
         "label": "Al-Andalus",
         "shortLabel": "Al-Andalus",
         "color": "rgb(255, 140, 80)",
-        "years": [756, 1492],
+        "years": [
+            756,
+            1492
+        ],
         "nodes": [
-            "emirate_cordoba", "great_mosque_cordoba", "abd_rahman_iii", "cordoba_zenith",
-            "pope_sylvester", "caliphate_collapse_andalus", "toledo_falls", "almoravid_intervention",
-            "almohad_dynasty", "ibn_rushd", "fall_cordoba", "nasrid_granada",
-            "alhambra_construction", "fall_seville", "fall_granada",
-            "expulsion_iberia", "columbus_voyage", "toledo_translators"
+            "emirate_cordoba",
+            "great_mosque_cordoba",
+            "abd_rahman_iii",
+            "cordoba_zenith",
+            "pope_sylvester",
+            "caliphate_collapse_andalus",
+            "toledo_falls",
+            "almoravid_intervention",
+            "almohad_dynasty",
+            "ibn_rushd",
+            "fall_cordoba",
+            "nasrid_granada",
+            "alhambra_construction",
+            "fall_seville",
+            "fall_granada",
+            "expulsion_iberia",
+            "columbus_voyage",
+            "toledo_translators"
         ]
     },
     {
@@ -74,24 +161,32 @@
         "label": "Crusades & Counter",
         "shortLabel": "Crusades",
         "color": "rgb(255, 100, 120)",
-        "years": [1095, 1291],
+        "years": [
+            1095,
+            1291
+        ],
         "nodes": [
-            "battle_manzikert", "seljuk_anatolia", "al_hakim_destroys_church",
-            "urban_calls_crusade", "first_crusade", "crusader_jerusalem",
-            "zangi_unifies", "nur_ad_din", "saladin_unites", "battle_hattin",
-            "saladin_jerusalem", "third_crusade", "mamluk_sultanate",
-            "battle_ain_jalut", "al_azhar_premier", "fall_acre", "ghazan_islam",
-            "ibn_alhaytham", "ibn_sina_canon", "ibn_nafis", "ibn_taymiyya"
-        ]
-    },
-    {
-        "id": "fatimid",
-        "label": "Fatimid & Learning",
-        "shortLabel": "Fatimid",
-        "color": "rgb(100, 220, 100)",
-        "years": [909, 1171],
-        "nodes": [
-            "fatimid_caliphate", "al_azhar_founded", "ibn_rushd"
+            "battle_manzikert",
+            "seljuk_anatolia",
+            "al_hakim_destroys_church",
+            "urban_calls_crusade",
+            "first_crusade",
+            "crusader_jerusalem",
+            "zangi_unifies",
+            "nur_ad_din",
+            "saladin_unites",
+            "battle_hattin",
+            "saladin_jerusalem",
+            "third_crusade",
+            "mamluk_sultanate",
+            "battle_ain_jalut",
+            "al_azhar_premier",
+            "fall_acre",
+            "ghazan_islam",
+            "ibn_alhaytham",
+            "ibn_sina_canon",
+            "ibn_nafis",
+            "ibn_taymiyya"
         ]
     },
     {
@@ -99,10 +194,18 @@
         "label": "West African Islam",
         "shortLabel": "W. Africa",
         "color": "rgb(255, 185, 50)",
-        "years": [1000, 1500],
+        "years": [
+            1000,
+            1500
+        ],
         "nodes": [
-            "ghana_islam", "mali_empire", "mansa_musa_hajj",
-            "timbuktu_university", "ibn_battuta", "ibn_khaldun", "songhai_empire"
+            "ghana_islam",
+            "mali_empire",
+            "mansa_musa_hajj",
+            "timbuktu_university",
+            "ibn_battuta",
+            "ibn_khaldun",
+            "songhai_empire"
         ]
     },
     {
@@ -110,10 +213,16 @@
         "label": "Islamic India",
         "shortLabel": "India",
         "color": "rgb(255, 120, 180)",
-        "years": [711, 1600],
+        "years": [
+            711,
+            1600
+        ],
         "nodes": [
-            "mahmud_ghazni", "delhi_sultanate", "timur_invasions",
-            "mughal_founded", "akbar_reign"
+            "mahmud_ghazni",
+            "delhi_sultanate",
+            "timur_invasions",
+            "mughal_founded",
+            "akbar_reign"
         ]
     },
     {
@@ -121,22 +230,23 @@
         "label": "Ottoman Empire",
         "shortLabel": "Ottoman",
         "color": "rgb(255, 80, 60)",
-        "years": [1299, 1600],
+        "years": [
+            1299,
+            1600
+        ],
         "nodes": [
-            "osman_dynasty", "battle_kosovo", "fall_constantinople",
-            "ottomans_welcome_jews", "selim_egypt", "ottoman_caliphate",
-            "suleiman_reign", "battle_mohacs", "siege_vienna", "ottoman_walls_jerusalem",
-            "battle_chaldiran"
-        ]
-    },
-    {
-        "id": "safavid",
-        "label": "Safavid Persia",
-        "shortLabel": "Safavid",
-        "color": "rgb(160, 100, 255)",
-        "years": [1501, 1600],
-        "nodes": [
-            "shah_ismail_safavid", "battle_chaldiran"
+            "osman_dynasty",
+            "battle_kosovo",
+            "fall_constantinople",
+            "ottomans_welcome_jews",
+            "selim_egypt",
+            "ottoman_caliphate",
+            "suleiman_reign",
+            "battle_mohacs",
+            "siege_vienna",
+            "ottoman_walls_jerusalem",
+            "battle_chaldiran",
+            "shah_ismail_safavid"
         ]
     }
 ]

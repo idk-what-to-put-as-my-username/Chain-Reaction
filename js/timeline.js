@@ -1,5 +1,6 @@
 import { nodes, ERAS, NODE_ERA_MAP, selectNode, onTimelineChange, onEraFilterChange } from "./state.js";
 import { setTimelinePresentYear, timelinePresentYear, isNodeVisible } from "./state.js";
+import * as State from "./state.js";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const MIN_YEAR = 560;
@@ -28,10 +29,15 @@ container.innerHTML = `
         <div id="timeline-inner">
             <div class="timeline-controls">
                 <div class="timeline-present-display">
-                    Present: <span id="present-year-val">${timelinePresentYear}</span> CE
+                    Present: <span id="present-year-val">${timelinePresentYear}</span> <span id="present-era-label">CE</span>
                 </div>
                 <div class="timeline-hint">scroll to zoom · drag top to set present · drag bottom to pan</div>
                 <div class="timeline-hidden-count" id="tl-hidden-count"></div>
+                <div class="tl-era-toggle" id="tl-era-toggle" title="Switch timeline between CE and AH">
+                    <span class="tl-era-option" data-mode="ce">CE</span>
+                    <span class="tl-era-option" data-mode="ah">AH</span>
+                    <span class="tl-era-thumb"></span>
+                </div>
             </div>
             <div class="timeline-track-wrapper" id="tl-track-wrapper">
                 <div class="timeline-era-bands" id="tl-era-bands"></div>
@@ -56,8 +62,46 @@ const nodeDotsEl    = document.getElementById("tl-node-dots");
 const futureOverlay = document.getElementById("tl-future-overlay");
 const cursorEl      = document.getElementById("tl-cursor");
 const scrubZone     = document.getElementById("tl-scrub-zone");
-const presentYearVal = document.getElementById("present-year-val");
-const hiddenCountEl  = document.getElementById("tl-hidden-count");
+const presentYearVal  = document.getElementById("present-year-val");
+const presentEraLabel = document.getElementById("present-era-label");
+const hiddenCountEl   = document.getElementById("tl-hidden-count");
+const eraToggleBtn    = document.getElementById("tl-era-toggle");
+const eraThumb        = eraToggleBtn.querySelector(".tl-era-thumb");
+const eraOptions      = eraToggleBtn.querySelectorAll(".tl-era-option");
+
+// ─── CE / AH display mode ─────────────────────────────────────────────────────
+let showAH = false;
+
+function ceToAH(year) {
+    return Math.round((year - 622) * 1.0307);
+}
+
+function formatYear(ceYear) {
+    if (!showAH) {
+        return ceYear >= MAX_YEAR ? `${ceYear}+` : `${ceYear}`;
+    }
+    const ah = ceToAH(ceYear);
+    return ah >= ceToAH(MAX_YEAR) ? `${ah}+` : `${ah}`;
+}
+
+function eraLabel() {
+    return showAH ? "AH" : "CE";
+}
+
+function updateToggleUI() {
+    eraOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.mode === (showAH ? "ah" : "ce")));
+    eraThumb.style.transform = showAH ? "translateX(100%)" : "translateX(0%)";
+}
+
+updateToggleUI();
+
+eraToggleBtn.addEventListener("click", () => {
+    showAH = !showAH;
+    updateToggleUI();
+    presentEraLabel.textContent = eraLabel();
+    presentYearVal.textContent = formatYear(timelinePresentYear);
+    render();
+});
 
 // ─── Open/Close ───────────────────────────────────────────────────────────────
 let isOpen = true;
@@ -139,7 +183,7 @@ function render() {
         if (isMajor) {
             const label = document.createElement("div");
             label.className = "timeline-tick-label";
-            label.textContent = `${y} CE`;
+            label.textContent = `${formatYear(y)} ${eraLabel()}`;
             tick.appendChild(label);
         }
 
@@ -165,7 +209,7 @@ function render() {
         dot.style.left       = `${pct}%`;
         dot.style.background = color;
         dot.style.boxShadow  = isHidden ? "none" : `0 0 4px ${color}`;
-        dot.title = `${node.name} (${node.year} CE)${isFuture ? " — future" : eraHidden ? " — era hidden" : ""}`;
+        dot.title = `${node.name} (${formatYear(node.year)} ${eraLabel()})${isFuture ? " — future" : eraHidden ? " — era hidden" : ""}`;
         dot.dataset.nodeId = node.id;
 
         nodeDotsEl.appendChild(dot);
@@ -218,9 +262,16 @@ trackWrapper.addEventListener("mousedown", (e) => {
             const nodeId = e.target.dataset.nodeId;
             if (nodeId) {
                 const node = nodes.find(n => n.id === nodeId);
-                if (node) selectNode(node);
+                if (node) {
+                    // Toggle: clicking an already-selected node deselects it
+                    if (State.selectedNode?.id === nodeId) {
+                        selectNode(null);
+                    } else {
+                        selectNode(node);
+                    }
+                }
             }
-            dragMode = null; // prevent any drag from setting present
+            dragMode = null;
             return;
         }
         dragMode = "present";
@@ -268,7 +319,8 @@ trackWrapper.addEventListener("mouseleave", () => {
 function updatePresent(year) {
     const clamped = Math.round(Math.max(MIN_YEAR, Math.min(MAX_YEAR, year)));
     setTimelinePresentYear(clamped);
-    presentYearVal.textContent = clamped;
+    presentYearVal.textContent = formatYear(clamped);
+    presentEraLabel.textContent = eraLabel();
     render();
 }
 

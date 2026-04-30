@@ -15,12 +15,12 @@
 .era-filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 5px;
     justify-content: center;
-    padding: 14px 18px;
+    padding: 9px 12px;
     background: rgba(8, 8, 16, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: 12px;
     backdrop-filter: blur(20px);
     box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     pointer-events: all;
@@ -41,13 +41,13 @@
 .era-checkbox-label {
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 12px;
-    border-radius: 8px;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
     cursor: pointer;
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
     font-weight: 500;
     color: rgba(255,255,255,0.5);
     border: 1px solid rgba(255,255,255,0.07);
@@ -67,8 +67,8 @@
 }
 
 .era-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     flex-shrink: 0;
     opacity: 0.35;
@@ -96,13 +96,13 @@
 .era-select-all {
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 12px;
-    border-radius: 8px;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
     cursor: pointer;
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
     font-weight: 700;
     color: rgba(255,255,255,0.6);
     border: 1px solid rgba(255,255,255,0.15);

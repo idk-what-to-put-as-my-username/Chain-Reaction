@@ -157,4 +157,3 @@ window.selectNodeById = selectNodeById;
 window.resetWhatIf = () => {
     toggleWhatIfMode();
 };
-

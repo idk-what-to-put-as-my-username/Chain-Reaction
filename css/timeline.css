@@ -261,3 +261,46 @@
     background: rgba(201, 168, 76, 0.1);
     border-top-color: rgba(201, 168, 76, 0.3);
 }
+/* ─── CE / AH pill toggle ────────────────────────────────────────────────────── */
+.tl-era-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    overflow: hidden;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.tl-era-option {
+    position: relative;
+    z-index: 2;
+    padding: 3px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    transition: color 0.25s ease;
+    white-space: nowrap;
+}
+
+.tl-era-option.active {
+    color: rgb(12, 12, 18);
+}
+
+.tl-era-thumb {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(201, 168, 76, 0.9);
+    border-radius: 5px;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}

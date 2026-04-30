@@ -12,88 +12,73 @@
     position: fixed;
     top: calc(var(--header-height) + 16px);
     right: 28px;
-    width: 44px;
     height: 44px;
-    border-radius: 50%;
+    padding: 0 16px;
+    border-radius: 10px;
     border: 1px solid rgba(255, 160, 40, 0.25);
     background: rgba(20, 20, 30, 0.85);
     backdrop-filter: blur(8px);
-    color: rgba(255, 180, 60, 0.7);
-    font-size: 20px;
+    color: rgba(255, 180, 60, 0.6);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.2s, border-color 0.2s, transform 0.3s, box-shadow 0.3s;
+    transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
     z-index: 100;
-    padding: 0;
 }
 
 .what-if-toggle:hover {
     color: #ffb82e;
     border-color: rgba(255, 160, 40, 0.6);
-    box-shadow: 0 0 14px rgba(255, 140, 30, 0.25);
+    box-shadow: 0 0 14px rgba(255, 140, 30, 0.2);
 }
 
 .what-if-toggle.active {
     color: #ff9e2e;
     border-color: rgba(255, 130, 30, 0.7);
-    box-shadow: 0 0 20px rgba(255, 120, 20, 0.35);
-    transform: scale(1.08);
+    background: rgba(255, 120, 20, 0.12);
+    box-shadow: 0 0 20px rgba(255, 120, 20, 0.3);
 }
 
 /* ─── What If Node States ─── */
+
+/* Root "erased" node: desaturated grey, strikethrough label */
 .node-erased .node-circle {
-    fill: url(#erasedGlow) !important;
-    opacity: 0.4;
-    stroke: #ff4444;
-    stroke-width: 2.5px;
-    filter: brightness(1.1);
-    animation: erasedPulse 2s ease-in-out infinite;
+    fill: rgb(80, 80, 85) !important;
+    filter: grayscale(1) brightness(0.6);
 }
 
 .node-erased .node-name {
-    opacity: 0.5;
+    fill: rgba(180, 180, 180, 0.6) !important;
     text-decoration: line-through;
-    text-decoration-color: #ff4444;
+    text-decoration-color: rgba(255, 80, 80, 0.7);
     text-decoration-thickness: 1.5px;
 }
 
-@keyframes erasedPulse {
-    0%, 100% { opacity: 0.35; }
-    50% { opacity: 0.55; }
-}
-
+/* Affected downstream nodes: grey tint */
 .node-affected .node-circle {
-    fill: url(#affectedGlow) !important;
-    opacity: 0.55;
+    fill: rgb(90, 90, 95) !important;
+    filter: grayscale(1) brightness(0.55);
 }
 
 .node-affected .node-name {
-    opacity: 0.6;
-}
-
-.node-surviving {
-    opacity: 0.2;
-}
-
-.node-surviving .node-circle {
-    opacity: 0.35;
-}
-
-.node-surviving .node-name {
-    opacity: 0.3;
+    fill: rgba(170, 170, 170, 0.5) !important;
 }
 
 /* ─── What If Link States ─── */
 .link-erased {
-    opacity: 0.06 !important;
-    stroke-dasharray: 5, 5;
+    opacity: 0.12 !important;
+    stroke: rgb(180, 180, 180) !important;
+    /*stroke-dasharray: 5, 5; */
 }
 
 /* ─── What If Mode Active Cursor ─── */
 body.what-if-active .node-points {
-    cursor: crosshair;
+    cursor: hand;
 }
 
 .node-hovered .node-circle {

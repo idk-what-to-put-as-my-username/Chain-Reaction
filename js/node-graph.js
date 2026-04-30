@@ -70,7 +70,7 @@ const whatIfToggle = document.createElement("button");
 whatIfToggle.id = "what-if-toggle";
 whatIfToggle.className = "what-if-toggle";
 whatIfToggle.title = "What If Mode";
-whatIfToggle.innerHTML = "⚡";
+whatIfToggle.innerHTML = "What if?";
 document.body.appendChild(whatIfToggle);
 
 whatIfToggle.addEventListener("click", () => {
@@ -87,28 +87,39 @@ function applyWhatIfVisuals(removedId) {
         return;
     }
     const downstream = new Set(getDownstreamNodes(removedId));
+    const deadIds = new Set([removedId, ...downstream]);
 
-    // Clear any inline styles from normal selection before applying What If classes
+    // Clear any inline opacity styles from normal selection
     nodePoints.style("opacity", null);
     linkLines.style("opacity", null).style("stroke-width", null);
     linkGroups.selectAll(".link-direction").remove();
 
+    // Remove any existing what-if rings
+    mainGroup.selectAll(".whatif-ring").remove();
+
     nodePoints.each(function(n) {
         const g = d3.select(this);
-        g.classed("node-erased", n.id === removedId)
-         .classed("node-affected", downstream.has(n.id))
-         .classed("node-surviving", n.id !== removedId && !downstream.has(n.id));
+        const isDead = deadIds.has(n.id);
+        const isRoot = n.id === removedId;
+
+        g.classed("node-erased", isRoot)
+         .classed("node-affected", !isRoot && downstream.has(n.id))
+         .classed("node-surviving", false); // all nodes stay normally visible
     });
 
+    // Grey out dead links
     linkLines.each(function(l) {
         const srcId = typeof l.source === 'object' ? l.source.id : l.source;
         const tgtId = typeof l.target === 'object' ? l.target.id : l.target;
-        const isErased = srcId === removedId || tgtId === removedId || downstream.has(srcId) || downstream.has(tgtId);
-        d3.select(this).classed("link-erased", isErased);
+        const isDead = deadIds.has(srcId) || deadIds.has(tgtId);
+        d3.select(this).classed("link-erased", isDead);
     });
 }
 
+
+
 function clearWhatIfVisuals() {
+    mainGroup.selectAll(".whatif-ring").remove();
     nodePoints
         .classed("node-erased", false)
         .classed("node-affected", false)
@@ -127,7 +138,10 @@ onWhatIfModeToggle((active) => {
         clearWhatIfVisuals();
         // Restore normal selection visuals if a node was selected before
         if (selectedNode) {
+            _internalSelecting = true;
             selectNode(selectedNode);
+            _internalSelecting = false;
+            applySelectionVisuals(selectedNode);
         }
     }
 });
@@ -158,13 +172,13 @@ linkGroups.append("line")
     .attr("stroke-width", Math.max(8, linkThickness + 4))
     .attr("pointer-events", "stroke")
     .on("mouseenter", function(e, l) {
-        if (selectedNode) return;
+        if (selectedNode || whatIfMode) return;
         d3.select(this.parentNode).select(".link-line")
             .classed("link-hovered", true)
             .attr("stroke", highlight.colour);
     })
     .on("mouseleave", function(e, l) {
-        if (selectedNode) return;
+        if (selectedNode || whatIfMode) return;
         d3.select(this.parentNode).select(".link-line")
             .classed("link-hovered", false)
             .attr("stroke", getLinkColor(l));
@@ -246,6 +260,14 @@ simulation.on("tick", () => {
         .attr("y1", d => (typeof d.source === "object" ? d.source.y : 0))
         .attr("x2", d => (typeof d.target === "object" ? d.target.x : 0))
         .attr("y2", d => (typeof d.target === "object" ? d.target.y : 0));
+    // Keep what-if rings on their nodes
+    mainGroup.selectAll(".whatif-ring").each(function() {
+        const id = d3.select(this).attr("data-node-id");
+        const node = nodes.find(n => n.id === id);
+        if (node) {
+            d3.select(this).attr("cx", node.x).attr("cy", node.y);
+        }
+    });
 })
 
 ERAS.forEach(era => createEraGradient(era.id, era.color));
@@ -295,7 +317,11 @@ function applyEraFilter() {
 }
 
 onEraFilterChange(() => {
-    selectNode(null);
+    if (!whatIfMode) {
+        _internalSelecting = true;
+        selectNode(null);
+        _internalSelecting = false;
+    }
     nodePoints
         .classed("node-hovered", false)
         .classed("node-muted", false)
@@ -474,6 +500,7 @@ nodeCircles
 // ─── React to external node selections (e.g. from timeline dots) ───
 onNodeSelected((node) => {
     if (_internalSelecting) return;
+    if (whatIfMode) return; // don't mess with visuals during what-if mode
 
     nodePoints
         .classed("node-hovered", false)
