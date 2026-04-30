@@ -258,10 +258,56 @@
     color: rgba(255, 140, 60, 0.7) !important;
 }
 
+.erased-list-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 60, 60, 0.12);
+    background: rgba(0, 0, 0, 0.15);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 80, 80, 0.3) transparent;
+}
+
+.erased-list-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.erased-list-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.erased-list-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 80, 80, 0.3);
+    border-radius: 2px;
+}
+
+.erased-list-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 80, 80, 0.55);
+}
+
+.erased-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 7px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: rgba(255, 60, 60, 0.15);
+    border: 1px solid rgba(255, 60, 60, 0.25);
+    color: rgba(255, 120, 80, 0.85);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
 .erased-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
+    padding: 6px;
 }
 
 .erased-item {

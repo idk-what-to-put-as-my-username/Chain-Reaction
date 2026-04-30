@@ -20,6 +20,22 @@ const SCRUB_ZONE_HEIGHT = 20;
 // ─── DOM ──────────────────────────────────────────────────────────────────────
 const container = document.getElementById("timeline");
 container.id = "timeline-container";
+
+// ─── CE / AH display mode ─────────────────────────────────────────────────────
+let showAH = false;
+
+function ceToAH(year) {
+    return Math.round((year - 622) * 1.0307);
+}
+
+function formatYear(ceYear) {
+    if (!showAH) {
+        return ceYear >= MAX_YEAR ? `${ceYear}+` : `${ceYear}`;
+    }
+    const ah = ceToAH(ceYear);
+    return ah >= ceToAH(MAX_YEAR) ? `${ah}+` : `${ah}`;
+}
+
 container.innerHTML = `
     <div id="timeline-panel">
         <button id="timeline-tab">
@@ -29,7 +45,17 @@ container.innerHTML = `
         <div id="timeline-inner">
             <div class="timeline-controls">
                 <div class="timeline-present-display">
-                    Present: <span id="present-year-val">${timelinePresentYear}</span> <span id="present-era-label">CE</span>
+                    Present: <span id="present-year-val">${formatYear(timelinePresentYear)}</span> <span id="present-era-label">CE</span>
+                </div>
+                <button id="tl-play-btn" class="tl-play-btn" title="Play / Pause">&#9654;</button>
+                <div class="tl-speed-control" id="tl-speed-control">
+                    <span class="tl-speed-label">Speed</span>
+                    <div class="tl-speed-pips">
+                        <button class="tl-speed-pip" data-speed="1" title="1x slow">&#xB7;</button>
+                        <button class="tl-speed-pip active" data-speed="3" title="3x medium">&#xB7;</button>
+                        <button class="tl-speed-pip" data-speed="8" title="8x fast">&#xB7;</button>
+                        <button class="tl-speed-pip" data-speed="20" title="20x very fast">&#xB7;</button>
+                    </div>
                 </div>
                 <div class="timeline-hint">scroll to zoom · drag top to set present · drag bottom to pan</div>
                 <div class="timeline-hidden-count" id="tl-hidden-count"></div>
@@ -68,21 +94,90 @@ const hiddenCountEl   = document.getElementById("tl-hidden-count");
 const eraToggleBtn    = document.getElementById("tl-era-toggle");
 const eraThumb        = eraToggleBtn.querySelector(".tl-era-thumb");
 const eraOptions      = eraToggleBtn.querySelectorAll(".tl-era-option");
+const playBtn         = document.getElementById("tl-play-btn");
+const speedPips       = document.querySelectorAll(".tl-speed-pip");
 
-// ─── CE / AH display mode ─────────────────────────────────────────────────────
-let showAH = false;
+// ─── Playback state ───────────────────────────────────────────────────────────
+let isPlaying = false;
+let playSpeed = 3;          // years per real-time second
+let playRafId = null;
+let lastPlayTimestamp = null;
+let playFloatYear = null;   // float accumulator so slow speeds don't get rounded away
 
-function ceToAH(year) {
-    return Math.round((year - 622) * 1.0307);
+function setPlaySpeed(speed) {
+    playSpeed = speed;
+    speedPips.forEach(pip => {
+        pip.classList.toggle("active", Number(pip.dataset.speed) === speed);
+    });
 }
 
-function formatYear(ceYear) {
-    if (!showAH) {
-        return ceYear >= MAX_YEAR ? `${ceYear}+` : `${ceYear}`;
+function startPlayback() {
+    isPlaying = true;
+    playFloatYear = timelinePresentYear;
+    playBtn.textContent = "⏸";
+    playBtn.classList.add("playing");
+    lastPlayTimestamp = null;
+    playRafId = requestAnimationFrame(playTick);
+}
+
+function stopPlayback() {
+    isPlaying = false;
+    playFloatYear = null;
+    playBtn.textContent = "▶";
+    playBtn.classList.remove("playing");
+    if (playRafId) cancelAnimationFrame(playRafId);
+    playRafId = null;
+    lastPlayTimestamp = null;
+}
+
+function playTick(timestamp) {
+    if (!isPlaying) return;
+    if (lastPlayTimestamp === null) lastPlayTimestamp = timestamp;
+    const elapsed = (timestamp - lastPlayTimestamp) / 1000; // seconds
+    lastPlayTimestamp = timestamp;
+
+    playFloatYear += elapsed * playSpeed;
+    if (playFloatYear >= MAX_YEAR) {
+        updatePresent(MAX_YEAR);
+        stopPlayback();
+        return;
     }
-    const ah = ceToAH(ceYear);
-    return ah >= ceToAH(MAX_YEAR) ? `${ah}+` : `${ah}`;
+    updatePresent(playFloatYear);
+
+    // Auto-pan: when the cursor exits the right edge, jump the view so the
+    // cursor reappears from the left at ~15%, giving a "page turn" effect
+    const cursorPct = (timelinePresentYear - viewOffset) / visibleSpan;
+    if (cursorPct >= 1.0) {
+        viewOffset = clampViewOffset(timelinePresentYear - visibleSpan * 0.15);
+        render();
+    }
+
+    playRafId = requestAnimationFrame(playTick);
 }
+
+playBtn.addEventListener("click", () => {
+    if (isPlaying) {
+        stopPlayback();
+    } else {
+        // If at the end, rewind first
+        if (timelinePresentYear >= MAX_YEAR) updatePresent(MIN_YEAR);
+        startPlayback();
+    }
+});
+
+speedPips.forEach(pip => {
+    pip.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setPlaySpeed(Number(pip.dataset.speed));
+    });
+});
+
+// Stop playback if the user manually drags the cursor
+function pauseIfPlaying() {
+    if (isPlaying) stopPlayback();
+}
+
+// ─── Timeline formatting ─────────────────────────────────────────────────
 
 function eraLabel() {
     return showAH ? "AH" : "CE";
@@ -317,9 +412,10 @@ trackWrapper.addEventListener("mouseleave", () => {
 });
 
 function updatePresent(year) {
-    const clamped = Math.round(Math.max(MIN_YEAR, Math.min(MAX_YEAR, year)));
+    const clamped = Math.max(MIN_YEAR, Math.min(MAX_YEAR, year));
+    // Store the float in state for smooth playback; display as integer
     setTimelinePresentYear(clamped);
-    presentYearVal.textContent = formatYear(clamped);
+    presentYearVal.textContent = formatYear(Math.round(clamped));
     presentEraLabel.textContent = eraLabel();
     render();
 }

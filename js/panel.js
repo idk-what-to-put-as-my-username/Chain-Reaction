@@ -107,9 +107,14 @@ function formatWhatIfAnalysis(removed) {
             </div>
             ${timeSpanHtml}
             <div class="panel-section">
-                <div class="panel-section-label erased-section-label">Erased Events</div>
-                <div class="erased-list">
-                    ${erasedListHtml}
+                <div class="panel-section-label erased-section-label">
+                    Erased Events
+                    <span class="erased-count-badge">${erasedCount}</span>
+                </div>
+                <div class="erased-list-scroll">
+                    <div class="erased-list">
+                        ${erasedListHtml}
+                    </div>
                 </div>
             </div>
             <button class="what-if-reset-btn" onclick="resetWhatIf()">↺ Reset Simulation</button>

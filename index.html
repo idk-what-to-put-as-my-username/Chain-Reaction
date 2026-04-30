@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/graph.css">
     <link rel="stylesheet" href="css/era.css">
     <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="css/search.css">
     <title>Qadar Chain</title>
 </head>
 <body>
@@ -24,6 +25,7 @@
     <script type="module" src="js/quiz.js"></script>
     <script type="module" src="js/timeline.js"></script>
     <script type="module" src="js/era-filter.js"></script>
+    <script type="module" src="js/search.js"></script>
 
     <header class="title">
         <div class="title-brand">
@@ -31,6 +33,14 @@
             <span class="title-accent">CHAIN</span>
         </div>
     </header>
+
+    <div id="node-search-wrapper">
+        <div id="node-search-container">
+            <input id="node-search-input" type="text" placeholder="Search events…" autocomplete="off" spellcheck="false" />
+            <span id="node-search-icon">⌕</span>
+            <div id="node-search-results"></div>
+        </div>
+    </div>
 
     <svg id="node-graph">
         <defs></defs>

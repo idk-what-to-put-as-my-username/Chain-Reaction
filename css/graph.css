@@ -141,3 +141,11 @@ body.what-if-active .node-points {
     height: calc(100vh - var(--header-height));
     z-index: 1;
 }
+/* ─── What If root node cross ────────────────────────────────────────────────── */
+.whatif-cross {
+    stroke: #ff2222;
+    stroke-width: 2.2px;
+    stroke-linecap: round;
+    pointer-events: none;
+    filter: drop-shadow(0 0 3px rgba(255, 40, 40, 0.8));
+}

@@ -61,9 +61,10 @@ ERAS.forEach(era => createEraGradient(era.id, era.color));
 createGradient("defaultGlow", defaultColour, glowControl.reg);
 
 //zooming and panning
-svg.call(d3.zoom()
+const zoomBehaviour = d3.zoom()
     .scaleExtent([0.3, 2.5])
-    .on("zoom", (e) => { mainGroup.attr("transform", e.transform); }))
+    .on("zoom", (e) => { mainGroup.attr("transform", e.transform); });
+svg.call(zoomBehaviour)
 
 // ─── What If Mode UI ───
 const whatIfToggle = document.createElement("button");
@@ -105,6 +106,20 @@ function applyWhatIfVisuals(removedId) {
         g.classed("node-erased", isRoot)
          .classed("node-affected", !isRoot && downstream.has(n.id))
          .classed("node-surviving", false); // all nodes stay normally visible
+
+        // Red cross on the root (erased) node
+        g.selectAll(".whatif-cross").remove();
+        if (isRoot) {
+            const arm = 6.5; // half-length of each cross arm (px, in node local space)
+            g.append("line")
+                .attr("class", "whatif-cross")
+                .attr("x1", -arm).attr("y1", -arm)
+                .attr("x2",  arm).attr("y2",  arm);
+            g.append("line")
+                .attr("class", "whatif-cross")
+                .attr("x1",  arm).attr("y1", -arm)
+                .attr("x2", -arm).attr("y2",  arm);
+        }
     });
 
     // Grey out dead links
@@ -120,6 +135,7 @@ function applyWhatIfVisuals(removedId) {
 
 function clearWhatIfVisuals() {
     mainGroup.selectAll(".whatif-ring").remove();
+    nodePoints.selectAll(".whatif-cross").remove();
     nodePoints
         .classed("node-erased", false)
         .classed("node-affected", false)
@@ -277,6 +293,11 @@ function getNodeId(d) {
   return typeof d === 'object' ? d.id : d;
 }
 
+// Track which node IDs were visible on the last applyEraFilter call
+let _prevVisibleIds = new Set();
+// rAF handle for the post-reveal camera-follow loop
+let _followAnimId = null;
+
 function applyEraFilter() {
   const allActive = areAllErasActive();
   const visibleNodes = nodes.filter(n => isNodeVisible(n.id) && isNodeBeforePresent(n.id));
@@ -286,6 +307,56 @@ function applyEraFilter() {
     return isNodeVisible(srcId) && isNodeVisible(tgtId)
         && isNodeBeforePresent(srcId) && isNodeBeforePresent(tgtId);
   });
+
+  // ── Pan camera to newly revealed nodes, then follow them as they settle ──
+  const newlyVisible = visibleNodes.filter(n => !_prevVisibleIds.has(n.id));
+  if (newlyVisible.length > 0) {
+    // Cancel any in-progress follow loop from a previous reveal
+    if (_followAnimId !== null) {
+      cancelAnimationFrame(_followAnimId);
+      _followAnimId = null;
+    }
+
+    const FOLLOW_DURATION = 1200; // ms to follow the nodes after they appear
+    const followStart = performance.now();
+
+    function followNodes(now) {
+      const elapsed = now - followStart;
+      const progress = Math.min(elapsed / FOLLOW_DURATION, 1); // 0 → 1
+
+      // Average *current* position of the newly-visible nodes (they're still moving)
+      const avgX = newlyVisible.reduce((s, n) => s + (n.x ?? 0), 0) / newlyVisible.length;
+      const avgY = newlyVisible.reduce((s, n) => s + (n.y ?? 0), 0) / newlyVisible.length;
+
+      const t = d3.zoomTransform(svg.node());
+      const targetX = width  / 2 - avgX * t.k;
+      const targetY = height / 2 - avgY * t.k;
+
+      // Snap strength fades from 1 → 0 over the follow duration so the
+      // camera gradually releases the node instead of abruptly stopping
+      const strength = 1 - progress;
+
+      // Lerp current translate toward the ideal centre position
+      const newTx = t.x + (targetX - t.x) * (0.12 + strength * 0.08);
+      const newTy = t.y + (targetY - t.y) * (0.12 + strength * 0.08);
+
+      // Apply without a CSS transition so we're driving it frame-by-frame
+      svg.call(
+        zoomBehaviour.transform,
+        d3.zoomIdentity.translate(newTx, newTy).scale(t.k)
+      );
+
+      if (progress < 1) {
+        _followAnimId = requestAnimationFrame(followNodes);
+      } else {
+        _followAnimId = null;
+      }
+    }
+
+    _followAnimId = requestAnimationFrame(followNodes);
+  }
+
+  _prevVisibleIds = new Set(visibleNodes.map(n => n.id));
 
   // Update simulation data - exclude hidden from physics
   simulation.nodes(visibleNodes);
@@ -343,6 +414,10 @@ onTimelineChange(() => {
         applySelectionVisuals(selectedNode);
     }
 });
+// Seed prevVisible so the initial nodes don't animate in from centre
+_prevVisibleIds = new Set(
+    nodes.filter(n => isNodeVisible(n.id) && isNodeBeforePresent(n.id)).map(n => n.id)
+);
 applyEraFilter();
 
 // ─── Click on SVG background to deselect ───
@@ -521,3 +596,46 @@ onNodeSelected((node) => {
 
     applySelectionVisuals(node);
 });
+// ─── Global: focus + select a node by id (used by search) ────────────────────
+window.focusNode = function(nodeId) {
+    const node = nodes.find(n => n.id === nodeId);
+    if (!node) return;
+
+    // Select it via the normal click pathway
+    nodePoints
+        .classed("node-hovered", false)
+        .classed("node-muted", false)
+        .classed("node-selected", false)
+        .style("opacity", null);
+    linkLines
+        .classed("link-hovered", false)
+        .classed("link-dimmed", false)
+        .style("opacity", null)
+        .style("stroke-width", null);
+    linkGroups.selectAll(".link-direction").remove();
+
+    applySelectionVisuals(node);
+    _internalSelecting = true;
+    selectNode(node);
+    _internalSelecting = false;
+
+    // Pan + zoom the graph so the node is centred on screen
+    // node.x / node.y are the simulation coordinates
+    if (node.x == null || node.y == null) return;
+
+    const svgEl = svg.node();
+    const svgWidth  = svgEl.clientWidth  || window.innerWidth;
+    const svgHeight = svgEl.clientHeight || (window.innerHeight - 80);
+
+    const targetScale = 1.4;
+    const tx = svgWidth  / 2 - node.x * targetScale;
+    const ty = svgHeight / 2 - node.y * targetScale;
+
+    svg.transition()
+        .duration(600)
+        .ease(d3.easeCubicInOut)
+        .call(
+            zoomBehaviour.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(targetScale)
+        );
+};
