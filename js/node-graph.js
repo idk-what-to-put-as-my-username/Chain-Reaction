@@ -1,6 +1,6 @@
 import { nodes, links } from "./state.js"
 import { selectNode, selectedNode, onNodeSelected } from "./state.js"
-import { linkThickness, nodeRadius, defaultColour, highlight, maxLen, forceLinkDistance, forceLinkStrength, forceRepulsionStrength, forceCollisionRadius, glowControl, onRerender } from "./state.js"
+import { linkThickness, nodeRadius, defaultColour, highlight, maxLen, forceLinkDistance, forceLinkStrength, forceRepulsionStrength, forceCollisionRadius, glowControl } from "./state.js"
 import { whatIfMode, removedNode, toggleWhatIfMode, setRemovedNode, onWhatIfModeToggle, onRemovedNodeChange, getDownstreamNodes } from "./state.js"
 import { ERAS, NODE_ERA_MAP, getEraColor, ERA_BRIDGE_LINKS } from "./state.js"
 import { onEraFilterChange, isNodeVisible, areAllErasActive, onTimelineChange, isNodeBeforePresent } from "./state.js"
@@ -310,8 +310,82 @@ onEraFilterChange(() => {
     applyEraFilter();
 });
 
-onTimelineChange(() => applyEraFilter());
+onTimelineChange(() => {
+    applyEraFilter();
+    // Re-apply selection dimming if a node is selected, since applyEraFilter resets opacity
+    if (selectedNode) {
+        applySelectionVisuals(selectedNode);
+    }
+});
 applyEraFilter();
+
+// ─── Click on SVG background to deselect ───
+svg.on("click", function(e) {
+    if (whatIfMode) return;
+    if (!selectedNode) return;
+    // Only deselect if the click target is the SVG or main group background, not a node
+    if (e.target === svg.node() || e.target === mainGroup.node()) {
+        deselectNode();
+    }
+});
+
+function deselectNode() {
+    nodePoints
+        .classed("node-hovered", false)
+        .classed("node-muted", false)
+        .classed("node-selected", false)
+        .style("opacity", null);
+    linkLines
+        .classed("link-hovered", false)
+        .classed("link-dimmed", false)
+        .style("opacity", null)
+        .style("stroke-width", null);
+    linkGroups.selectAll(".link-direction").remove();
+    _internalSelecting = true;
+    selectNode(null);
+    _internalSelecting = false;
+    applyEraFilter();
+}
+
+function applySelectionVisuals(node) {
+    const distMap = bfsDistances(node.id);
+    const maxDist = Math.max(...distMap.values());
+
+    nodePoints.style("opacity", n => {
+        if (!isNodeVisible(n.id) || !isNodeBeforePresent(n.id)) return 0;
+        if (n.id === node.id) return 1;
+        const nd = distMap.get(n.id) ?? (maxDist + 1);
+        return Math.max(0.15, 1 - nd * 0.28);
+    });
+
+    linkLines
+        .style("opacity", l => {
+            const ld = getLinkDistance(l, distMap);
+            if (ld === Infinity) return 0.05;
+            return Math.max(0.08, 1 - ld * 0.3);
+        })
+        .style("stroke-width", l => {
+            const ld = getLinkDistance(l, distMap);
+            return ld === 0 ? "2px" : null;
+        });
+
+    linkGroups.selectAll(".link-direction").remove();
+    linkGroups.each(function(l) {
+        const ld = getLinkDistance(l, distMap);
+        if (ld === 0) {
+            d3.select(this).append("line")
+                .attr("class", "link-direction")
+                .attr("stroke", highlight.colour)
+                .attr("stroke-width", 3)
+                .attr("x1", l.source.x)
+                .attr("y1", l.source.y)
+                .attr("x2", l.target.x)
+                .attr("y2", l.target.y);
+        }
+    });
+
+    nodePoints.filter(n => n.id === node.id).classed("node-selected", true);
+}
 
 
 function bfsDistances(sourceId) {
@@ -339,6 +413,8 @@ function getLinkDistance(link, distMap) {
     return Math.min(sd, td); // link's distance = closer of its two endpoints
 }
 
+let _internalSelecting = false;
+
 nodeCircles
     .on("mouseenter", function(e, d) {
         if (selectedNode || whatIfMode) return;
@@ -354,10 +430,10 @@ nodeCircles
         nodePoints.filter(n => n.id !== d.id).classed("node-muted", false);
     })
     .on("click", function(e, d) {
+        e.stopPropagation(); // prevent SVG background click from firing
         if (!isNodeVisible(d.id)) return;
         // What If Mode Click
         if (whatIfMode) {
-            e.stopPropagation();
             if (removedNode?.id === d.id) {
                 setRemovedNode(null);
             } else {
@@ -379,7 +455,6 @@ nodeCircles
             .classed("link-dimmed", false)
             .style("opacity", null)
             .style("stroke-width", null);
-        // Remove all animated direction lines
         linkGroups.selectAll(".link-direction").remove();
 
         if (alreadySelected) {
@@ -390,62 +465,16 @@ nodeCircles
             return;
         }
 
-        const distMap = bfsDistances(d.id);
-        const maxDist = Math.max(...distMap.values());
-
-        // Opacity curve for nodes: selected = 1, distance 1 = 0.7, farther fades to 0.15
-        nodePoints.style("opacity", n => {
-            if (n.id === d.id) return 1;
-            const nd = distMap.get(n.id) ?? (maxDist + 1);
-            return Math.max(0.15, 1 - nd * 0.28);
-        });
-
-        // Opacity curve for links: distance 0 (adjacent) = 1, fades out with distance
-        linkLines
-            .style("opacity", l => {
-                const ld = getLinkDistance(l, distMap);
-                if (ld === Infinity) return 0.05;
-                return Math.max(0.08, 1 - ld * 0.3);
-            })
-            .style("stroke-width", l => {
-                const ld = getLinkDistance(l, distMap);
-                return ld === 0 ? "2px" : null;
-            });
-
-        // Add animated direction indicators for adjacent links
-        linkGroups.each(function(l) {
-            const ld = getLinkDistance(l, distMap);
-            if (ld === 0) {
-                // Remove existing animated line if present
-                d3.select(this).select(".link-direction").remove();
-                // Add new animated direction line
-                d3.select(this).append("line")
-                    .attr("class", "link-direction")
-                    .attr("stroke", highlight.colour)
-                    .attr("stroke-width", 3)
-                    .attr("x1", l.source.x)
-                    .attr("y1", l.source.y)
-                    .attr("x2", l.target.x)
-                    .attr("y2", l.target.y);
-            }
-        });
-
-        d3.select(this.parentNode).classed("node-selected", true);
+        applySelectionVisuals(d);
         _internalSelecting = true;
         selectNode(d);
         _internalSelecting = false;
     });
 
-
-
-
-
 // ─── React to external node selections (e.g. from timeline dots) ───
-let _internalSelecting = false;
 onNodeSelected((node) => {
-    if (_internalSelecting) return; // graph is handling it itself, skip
+    if (_internalSelecting) return;
 
-    // Reset all visuals first
     nodePoints
         .classed("node-hovered", false)
         .classed("node-muted", false)
@@ -463,50 +492,5 @@ onNodeSelected((node) => {
         return;
     }
 
-    const distMap = bfsDistances(node.id);
-    const maxDist = Math.max(...distMap.values());
-
-    nodePoints.style("opacity", n => {
-        if (n.id === node.id) return 1;
-        const nd = distMap.get(n.id) ?? (maxDist + 1);
-        return Math.max(0.15, 1 - nd * 0.28);
-    });
-
-    linkLines
-        .style("opacity", l => {
-            const ld = getLinkDistance(l, distMap);
-            if (ld === Infinity) return 0.05;
-            return Math.max(0.08, 1 - ld * 0.3);
-        })
-        .style("stroke-width", l => {
-            const ld = getLinkDistance(l, distMap);
-            return ld === 0 ? "2px" : null;
-        });
-
-    linkGroups.each(function(l) {
-        const ld = getLinkDistance(l, distMap);
-        if (ld === 0) {
-            d3.select(this).select(".link-direction").remove();
-            d3.select(this).append("line")
-                .attr("class", "link-direction")
-                .attr("stroke", highlight.colour)
-                .attr("stroke-width", 3)
-                .attr("x1", l.source.x)
-                .attr("y1", l.source.y)
-                .attr("x2", l.target.x)
-                .attr("y2", l.target.y);
-        }
-    });
-
-    nodePoints.filter(n => n.id === node.id).classed("node-selected", true);
-});
-
-// React to settings changes
-onRerender(() => {
-    defs.select("#defaultGlow").remove();
-    defs.select("#hoverGlow").remove();
-    createGradient("defaultGlow", defaultColour, glowControl.reg);
-    createGradient("hoverGlow", highlight.colour, glowControl.sel);
-    ERAS.forEach(era => createEraGradient(era.id, era.color));
-    linkLines.attr("stroke", d => getLinkColor(d));
+    applySelectionVisuals(node);
 });
