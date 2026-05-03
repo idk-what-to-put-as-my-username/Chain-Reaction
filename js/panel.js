@@ -20,16 +20,18 @@ function formatNodeInfo(node) {
         `;
     }
 
+    const getId = val => (typeof val === 'object' && val !== null) ? val.id : val;
+
     // Find causes: links where target is this node
     const causes = links
-        .filter(l => l.target === node.id)
-        .map(l => nodes.find(n => n.id === l.source))
+        .filter(l => getId(l.target) === node.id)
+        .map(l => nodes.find(n => n.id === getId(l.source)))
         .filter(Boolean);
 
     // Find effects: links where source is this node
     const effects = links
-        .filter(l => l.source === node.id)
-        .map(l => nodes.find(n => n.id === l.target))
+        .filter(l => getId(l.source) === node.id)
+        .map(l => nodes.find(n => n.id === getId(l.target)))
         .filter(Boolean);
 
     const causesHtml = causes.length ? `

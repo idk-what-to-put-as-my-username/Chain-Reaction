@@ -62,7 +62,7 @@ createGradient("defaultGlow", defaultColour, glowControl.reg);
 
 //zooming and panning
 const zoomBehaviour = d3.zoom()
-    .scaleExtent([0.3, 2.5])
+    .scaleExtent([0.2, 2.5])
     .on("zoom", (e) => { mainGroup.attr("transform", e.transform); });
 svg.call(zoomBehaviour)
 
