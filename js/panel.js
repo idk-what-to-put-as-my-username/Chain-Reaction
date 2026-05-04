@@ -182,6 +182,7 @@ function formatLinkInfo(link) {
                     <span class="panel-link-node-year">${srcNode?.year ?? '—'} CE</span>
                 </div>
                 <div class="panel-link-connector">
+                    <div class="panel-link-arrowhead">←</div>
                     <div class="panel-link-line"></div>
                     <div class="panel-link-arrowhead">→</div>
                 </div>

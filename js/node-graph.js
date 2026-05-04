@@ -66,6 +66,18 @@ const zoomBehaviour = d3.zoom()
     .on("zoom", (e) => { mainGroup.attr("transform", e.transform); });
 svg.call(zoomBehaviour)
 
+  // Initial centered zoom-out
+  const initialScale = 0.272;
+  const { cx, cy } = _getVisualCenter();
+  const tx = cx - (width / 2) * initialScale;
+  const ty = cy - (height / 2) * initialScale;
+  svg.call(
+    zoomBehaviour.transform,
+    d3.zoomIdentity.translate(tx, ty).scale(initialScale)
+  );
+
+
+
 // ─── What If Mode UI ───
 const whatIfToggle = document.createElement("button");
 whatIfToggle.id = "what-if-toggle";
@@ -213,25 +225,7 @@ function clearWhatIfVisuals() {
 onWhatIfModeToggle((active) => {
     whatIfToggle.classList.toggle("active", active);
     document.body.classList.toggle("what-if-active", active);
-    if (active) {
-        // Clear any lingering node/link selection visuals before entering what-if mode
-        nodePoints
-            .classed("node-hovered", false)
-            .classed("node-muted", false)
-            .classed("node-selected", false)
-            .style("opacity", null);
-        linkLines
-            .classed("link-hovered", false)
-            .classed("link-dimmed", false)
-            .style("opacity", null)
-            .style("stroke-width", null)
-            .attr("stroke", l => getLinkColor(l));
-        linkGroups.selectAll(".link-direction").remove();
-        _internalSelecting = true;
-        selectNode(null);
-        selectLink(null);
-        _internalSelecting = false;
-    } else {
+    if (!active) {
         clearWhatIfVisuals();
         // Restore normal selection visuals if a node was selected before
         if (selectedNode) {
@@ -270,9 +264,6 @@ linkGroups.append("line")
     .attr("pointer-events", "stroke")
     .on("mouseenter", function(e, l) {
         if (selectedNode || selectedLink || whatIfMode) return;
-        const srcId = typeof l.source === 'object' ? l.source.id : l.source;
-        const tgtId = typeof l.target === 'object' ? l.target.id : l.target;
-        if (!isNodeVisible(srcId) || !isNodeVisible(tgtId) || !isNodeBeforePresent(srcId) || !isNodeBeforePresent(tgtId)) return;
         d3.select(this.parentNode).select(".link-line")
             .classed("link-hovered", true)
             .attr("stroke", highlight.colour);
@@ -289,8 +280,6 @@ linkGroups.append("line")
 
         const srcId = typeof l.source === 'object' ? l.source.id : l.source;
         const tgtId = typeof l.target === 'object' ? l.target.id : l.target;
-        // Block interaction if either endpoint is hidden or in the future
-        if (!isNodeVisible(srcId) || !isNodeVisible(tgtId) || !isNodeBeforePresent(srcId) || !isNodeBeforePresent(tgtId)) return;
         const alreadySelected = selectedLink &&
             (typeof selectedLink.source === 'object' ? selectedLink.source.id : selectedLink.source) === srcId &&
             (typeof selectedLink.target === 'object' ? selectedLink.target.id : selectedLink.target) === tgtId;
@@ -412,6 +401,128 @@ simulation.on("tick", () => {
 
 ERAS.forEach(era => createEraGradient(era.id, era.color));
 createGradient("hoverGlow", highlight.colour, glowControl.sel);
+
+// ─── Loading Screen ───────────────────────────────────────────────────────────
+(function initLoadingScreen() {
+    const style = document.createElement("style");
+    style.textContent = `
+        #qadar-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0f;
+            pointer-events: all;
+            transition: opacity 0.9s ease;
+        }
+        #qadar-loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 2.4rem;
+            letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.92);
+            margin-bottom: 0.25rem;
+            user-select: none;
+        }
+        .loader-brand .loader-accent {
+            color: rgb(180, 150, 80);
+        }
+        .loader-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.55em;
+            color: rgba(180,150,80,0.6);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            user-select: none;
+        }
+        .loader-chain {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        .loader-link {
+            width: 18px;
+            height: 10px;
+            border: 1.5px solid rgba(180, 150, 80, 0.25);
+            border-radius: 5px;
+            animation: chainPulse 1.6s ease-in-out infinite;
+        }
+        .loader-link:nth-child(1) { animation-delay: 0.00s; }
+        .loader-link:nth-child(2) { animation-delay: 0.18s; }
+        .loader-link:nth-child(3) { animation-delay: 0.36s; }
+        .loader-link:nth-child(4) { animation-delay: 0.54s; }
+        .loader-link:nth-child(5) { animation-delay: 0.72s; }
+        .loader-link:nth-child(6) { animation-delay: 0.90s; }
+        .loader-link:nth-child(7) { animation-delay: 1.08s; }
+        @keyframes chainPulse {
+            0%, 100% {
+                border-color: rgba(180, 150, 80, 0.2);
+                box-shadow: none;
+            }
+            50% {
+                border-color: rgba(208, 180, 100, 0.9);
+                box-shadow: 0 0 8px rgba(208, 180, 100, 0.5);
+            }
+        }
+        .loader-status {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.3);
+            text-transform: uppercase;
+        }
+    `;
+    document.head.appendChild(style);
+
+    const loader = document.createElement("div");
+    loader.id = "qadar-loader";
+    loader.innerHTML = `
+        <div class="loader-brand">QADAR<span class="loader-accent">CHAIN</span></div>
+        <div class="loader-sub">Connecting the threads of history</div>
+        <div class="loader-chain">
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+            <div class="loader-link"></div>
+        </div>
+        <div class="loader-status">Settling the graph\u2026</div>
+    `;
+    document.body.appendChild(loader);
+
+    function dismissLoader() {
+        loader.classList.add("fade-out");
+        setTimeout(() => loader.remove(), 950);
+    }
+
+    // Debounced "end" listener — the sim can restart briefly (alpha bumps from
+    // applyEraFilter), so we wait a short beat after it truly goes quiet.
+    let _settleTimer = null;
+
+    simulation.on("end.loader", () => {
+        clearTimeout(_settleTimer);
+        _settleTimer = setTimeout(() => {
+            simulation.on("end.loader", null);
+            dismissLoader();
+        }, 400);
+    });
+
+    // Safety fallback: always dismiss after 6 s
+    setTimeout(() => {
+        simulation.on("end.loader", null);
+        clearTimeout(_settleTimer);
+        dismissLoader();
+    }, 6000);
+})();
 
 function getNodeId(d) {
   return typeof d === 'object' ? d.id : d;
@@ -608,7 +719,7 @@ function applyLinkSelectionVisuals(link) {
         .style("opacity", l => {
             const lSrc = typeof l.source === 'object' ? l.source.id : l.source;
             const lTgt = typeof l.target === 'object' ? l.target.id : l.target;
-            // The selected link itself — full opacity, but no colour change (direction line handles highlight)
+            // The selected link itself
             if (lSrc === srcId && lTgt === tgtId) return 1;
             const ld = getLinkDistance(l, distMap);
             if (ld === Infinity) return 0.05;
@@ -723,7 +834,7 @@ nodeCircles
     })
     .on("click", function(e, d) {
         e.stopPropagation(); // prevent SVG background click from firing
-        if (!isNodeVisible(d.id) || !isNodeBeforePresent(d.id)) return;
+        if (!isNodeVisible(d.id)) return;
         // What If Mode Click
         if (whatIfMode) {
             if (removedNode?.id === d.id) {
