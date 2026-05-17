@@ -95,7 +95,7 @@ onLinkSelected((link) => {
 //         timeline node dots, sidebar panel-link items, and search results.
 document.addEventListener("click", async (e) => {
     const isButton      = !!e.target.closest("button");
-    const isEraToggle   = !!e.target.closest("#tl-era-toggle");
+    const isEraToggle   = !!e.target.closest("#tl-cal-toggle");
     const isEraLabel    = !!e.target.closest(".era-checkbox-label, .era-select-all");
     const isTimelineDot = !!e.target.closest(".timeline-node-dot");
     const isPanelLink   = !!e.target.closest(".panel-link");

@@ -18,8 +18,7 @@ let viewOffset = MIN_YEAR;
 const SCRUB_ZONE_HEIGHT = 20;
 
 // ─── DOM ──────────────────────────────────────────────────────────────────────
-const container = document.getElementById("timeline");
-container.id = "timeline-container";
+const container = document.getElementById("timeline-container");
 
 // ─── CE / AH display mode ─────────────────────────────────────────────────────
 let showAH = false;
@@ -45,7 +44,7 @@ container.innerHTML = `
         <div id="timeline-inner">
             <div class="timeline-controls">
                 <div class="timeline-present-display">
-                    Present: <span id="present-year-val">${formatYear(timelinePresentYear)}</span> <span id="present-era-label">CE</span>
+                    Present: <span id="present-year-val">${formatYear(timelinePresentYear)}</span> <span id="present-cal-label">CE</span>
                 </div>
                 <button id="tl-play-btn" class="tl-play-btn" title="Play / Pause">&#9654;</button>
                 <div class="tl-speed-control" id="tl-speed-control">
@@ -59,10 +58,10 @@ container.innerHTML = `
                 </div>
                 <div class="timeline-hint">scroll to zoom · drag top to set present · drag bottom to pan</div>
                 <div class="timeline-hidden-count" id="tl-hidden-count"></div>
-                <div class="tl-era-toggle" id="tl-era-toggle" title="Switch timeline between CE and AH">
-                    <span class="tl-era-option" data-mode="ce">CE</span>
-                    <span class="tl-era-option" data-mode="ah">AH</span>
-                    <span class="tl-era-thumb"></span>
+                <div class="tl-cal-toggle" id="tl-cal-toggle" title="Switch timeline between CE and AH">
+                    <span class="tl-cal-option" data-mode="ce">CE</span>
+                    <span class="tl-cal-option" data-mode="ah">AH</span>
+                    <span class="tl-cal-thumb"></span>
                 </div>
             </div>
             <div class="timeline-track-wrapper" id="tl-track-wrapper">
@@ -89,11 +88,11 @@ const futureOverlay = document.getElementById("tl-future-overlay");
 const cursorEl      = document.getElementById("tl-cursor");
 const scrubZone     = document.getElementById("tl-scrub-zone");
 const presentYearVal  = document.getElementById("present-year-val");
-const presentEraLabel = document.getElementById("present-era-label");
+const presentCalLabel = document.getElementById("present-cal-label");
 const hiddenCountEl   = document.getElementById("tl-hidden-count");
-const eraToggleBtn    = document.getElementById("tl-era-toggle");
-const eraThumb        = eraToggleBtn.querySelector(".tl-era-thumb");
-const eraOptions      = eraToggleBtn.querySelectorAll(".tl-era-option");
+const calToggleBtn    = document.getElementById("tl-cal-toggle");
+const eraThumb        = calToggleBtn.querySelector(".tl-cal-thumb");
+const calOptions      = calToggleBtn.querySelectorAll(".tl-cal-option");
 const playBtn         = document.getElementById("tl-play-btn");
 const speedPips       = document.querySelectorAll(".tl-speed-pip");
 
@@ -179,21 +178,21 @@ function pauseIfPlaying() {
 
 // ─── Timeline formatting ─────────────────────────────────────────────────
 
-function eraLabel() {
+function calLabel() {
     return showAH ? "AH" : "CE";
 }
 
 function updateToggleUI() {
-    eraOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.mode === (showAH ? "ah" : "ce")));
+    calOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.mode === (showAH ? "ah" : "ce")));
     eraThumb.style.transform = showAH ? "translateX(100%)" : "translateX(0%)";
 }
 
 updateToggleUI();
 
-eraToggleBtn.addEventListener("click", () => {
+calToggleBtn.addEventListener("click", () => {
     showAH = !showAH;
     updateToggleUI();
-    presentEraLabel.textContent = eraLabel();
+    presentCalLabel.textContent = calLabel();
     presentYearVal.textContent = formatYear(timelinePresentYear);
     render();
 });
@@ -278,7 +277,7 @@ function render() {
         if (isMajor) {
             const label = document.createElement("div");
             label.className = "timeline-tick-label";
-            label.textContent = `${formatYear(y)} ${eraLabel()}`;
+            label.textContent = `${formatYear(y)} ${calLabel()}`;
             tick.appendChild(label);
         }
 
@@ -305,7 +304,7 @@ function render() {
         dot.style.left       = `${pct}%`;
         dot.style.background = color;
         dot.style.boxShadow  = isHidden ? "none" : `0 0 4px ${color}`;
-        dot.title = `${node.name} (${formatYear(node.year)} ${eraLabel()})${isFuture ? " — future" : eraHidden ? " — era hidden" : ""}`;
+        dot.title = `${node.name} (${formatYear(node.year)} ${calLabel()})${isFuture ? " — future" : eraHidden ? " — era hidden" : ""}`;
         dot.dataset.nodeId = node.id;
 
         nodeDotsEl.appendChild(dot);
@@ -422,7 +421,7 @@ function updatePresent(year) {
     // Store the float in state for smooth playback; display as integer
     setTimelinePresentYear(clamped);
     presentYearVal.textContent = formatYear(Math.round(clamped));
-    presentEraLabel.textContent = eraLabel();
+    presentCalLabel.textContent = calLabel();
     render();
 }
 

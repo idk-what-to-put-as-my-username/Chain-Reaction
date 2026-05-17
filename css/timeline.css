@@ -266,7 +266,7 @@
     border-top-color: rgba(201, 168, 76, 0.3);
 }
 /* ─── CE / AH pill toggle ────────────────────────────────────────────────────── */
-.tl-era-toggle {
+.tl-cal-toggle {
     position: relative;
     display: flex;
     align-items: center;
@@ -279,7 +279,7 @@
     user-select: none;
 }
 
-.tl-era-option {
+.tl-cal-option {
     position: relative;
     z-index: 2;
     padding: 3px 10px;
@@ -292,11 +292,11 @@
     white-space: nowrap;
 }
 
-.tl-era-option.active {
+.tl-cal-option.active {
     color: rgb(12, 12, 18);
 }
 
-.tl-era-thumb {
+.tl-cal-thumb {
     position: absolute;
     z-index: 1;
     top: 0;
